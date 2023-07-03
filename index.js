@@ -36,7 +36,9 @@ app.get('/card/:cardId', (req, res) =>
 {
     pokemon.card.find(req.params.cardId)
         .then(card => {
-    res.render('card', {cardInfo: card})  
+    res.render('card', {cardInfo: card}) 
+    
+    console.log(card)
 })
     
 })
