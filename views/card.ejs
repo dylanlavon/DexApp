@@ -2,11 +2,17 @@
 
 <!-- Check if there is a previous or next card in the set. -->
 <!-- Necessary for previous / next cards to display under current card -->
-<% var prevCardExists = false;%>
-<% var nextCardExists = false;%>
+<% var prevCardExists, nextCardExists = false;%>
 <% if(parseInt(cardInfo.number) - 1 >= 1) prevCardExists = true; %>
 <% if(parseInt(cardInfo.number) + 1 <= cardInfo.set.total) nextCardExists = true; %>
+
+<!-- Get card number, int only -->
+<% if(prevCardExists) {var prevCardId = cardInfo.id.split('-')[0] + '-' + (parseInt(cardInfo.number) - 1).toString();} %>
+<% if(nextCardExists) {var nextCardId = cardInfo.id.split('-')[0] + '-' + (parseInt(cardInfo.number) + 1).toString();} %>
+
+<!-- Log details -->
 <% console.log("Prev card exists?: ", prevCardExists, " Next card exists?: ", nextCardExists); %>
+<% console.log("Prev card id: ", prevCardId, " Next card id: ", nextCardId); %>
 
 <div class="container">
   <div class="cardInfo">
@@ -24,7 +30,7 @@
         </tr>
         <tr>
           <td><b>Number:</b></td>
-          <td><%=cardInfo.number%></td>
+          <td><%=cardInfo.number%>/<%= cardInfo.set.printedTotal %></td>
         </tr>
         <tr>
           <td><b>Card Type:</b></td>
@@ -63,12 +69,30 @@
     <table>
       <tbody>
         <tr>
-          <th style="text-align: center;">Previous</th>
-          <th style="text-align: center;">Next</th>
+          <% if(prevCardExists) { %>
+            <th style="text-align: center;">Previous</th>
+          <% } %>
+          <% if(nextCardExists) { %>
+            <th style="text-align: center;">Next</th>
+          <% } %>
         </tr>
         <tr>
-          <td></td>
-          <td></td>
+          <% if(prevCardExists) { %>
+          <td>
+            <div style="text-align: center;">
+              <a href="/card/<%=prevCardId%>"><img src="https://images.pokemontcg.io/<%= prevCardId.split('-')[0] %>/<%= prevCardId.split('-')[1] %>.png"></a>
+              <p><%= prevCardId.split('-')[1] %>/<%= cardInfo.set.printedTotal %></p>
+            </div>
+          </td>
+          <% } %>
+          <% if(nextCardExists) { %>
+          <td>
+            <div style="text-align: center;">
+              <a href="/card/<%=nextCardId%>"><img src="https://images.pokemontcg.io/<%= nextCardId.split('-')[0] %>/<%= nextCardId.split('-')[1] %>.png"></a>
+              <p><%= nextCardId.split('-')[1] %>/<%= cardInfo.set.printedTotal %></p>
+            </div>
+          </td>
+          <% } %>
         </tr>
       </tbody>
     </table>

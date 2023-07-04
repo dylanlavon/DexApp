@@ -20,6 +20,11 @@ footer{
 
 a{
     color: white;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
 }
 
 table{
@@ -50,7 +55,27 @@ table img{
 .container{
     display: flex;
     flex-wrap: wrap;
-    max-width: 1500px;
-    margin: 0 auto;
     padding: 20px;
 }
+
+.cardInfo{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin: auto;
+    padding: 20px;
+}
+
+.setInfo{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin: auto;
+    padding: 20px;
+}
+
+tr.set-gap td {
+    height: 10px; /* Adjust the height as needed */
+    border: none; /* Remove border */
+    outline: none; /* Remove outline */
+  }

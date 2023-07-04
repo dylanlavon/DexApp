@@ -1,0 +1,49 @@
+<%- include('partials/header') %> 
+
+<!-- <%console.log(setMap);%> -->
+
+<div class="container">
+    <div class="setInfo">
+        <div>
+            <h1 style="margin-bottom: 30px;">Sets</h1>
+            <h5 style="margin-bottom: 20px;">Here are all of the English sets from Base up to Paldea Evolved <i>(as of July 2023)</i>.</h5>
+        </div>
+        
+        <table>
+            <tbody>
+                <% let setsCount = 0; %>
+                <% for (let key in setMap) { %>
+                <tr>   
+                    <th colspan="4"><%= key %></th>   
+                </tr>
+
+                <!-- Ensure only three sets appear in a row -->
+                <% let count = 0; %>
+                <% setMap[key].forEach(function(value) { %>
+                    <% if (count === 0) { %>
+                        <tr>
+                    <% } %>
+                    <td><a href="https://images.pokemontcg.io/<%= setsInfo[setsCount].id %>/symbol.png"><img src="https://images.pokemontcg.io/<%= setsInfo[setsCount].id %>/symbol.png" width="30" height="30">  <%= value %></a></td>
+                    <% count++; %>
+                    <% setsCount++;%>
+                    <% if (count === 4) { %>
+                        </tr>
+                        <% count = 0; %>
+                    <% } %>
+                <% }); %>
+                <% if (count !== 0) { %>
+                    </tr>
+                <% } %>
+
+                <!-- Add a small gap between sets -->
+                <tr class="set-gap">
+                    <td colspan="4"></td>
+                </tr>
+
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<%- include('partials/footer') %> 

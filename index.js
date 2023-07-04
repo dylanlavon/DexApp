@@ -22,9 +22,25 @@ app.get('/about', (req, res) =>
     res.send("This is the About page!")   
 })
 
-app.get('/set', (req, res) =>
+app.get('/sets', (req, res) =>
 {
-    res.send("No set specified!")   
+    pokemon.set.all()
+        .then((sets) => {
+
+        // Create hashmap for Series:set pairs
+        const setMap = {}; 
+        sets.forEach(item => {
+        const { series, name } = item; 
+        if(setMap.hasOwnProperty(series)) { 
+            setMap[series].push(name); 
+        } else { 
+            setMap[series] = [name]; 
+        } 
+        }); 
+
+    res.render('sets', {setsInfo: sets, setMap: setMap}); 
+    console.log(sets)
+  })
 })
 
 app.get('/set/:setId', (req, res) =>
@@ -38,7 +54,7 @@ app.get('/card/:cardId', (req, res) =>
         .then(card => {
     res.render('card', {cardInfo: card}) 
     
-    console.log(card)
+    // console.log(card)
 })
     
 })
