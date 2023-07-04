@@ -1,55 +1,78 @@
 <%- include('partials/header') %> 
 
-<div class="cardInfo">
-  <table>
-    <tbody>
-      <tr>
-        <th colspan="3"><%=cardInfo.name%></th>
-      </tr>
-      <tr>
-        <td rowspan="90"><img src=<%= cardInfo.images.small%> alt=<%=cardInfo.name%>></td>
-      </tr>
-      <tr>
-        <td><b>Set:</b></td>
-        <td><%=cardInfo.set.name%></td>
-      </tr>
-      <tr>
-        <td><b>Number:</b></td>
-        <td><%=cardInfo.number%></td>
-      </tr>
-      <tr>
-        <td><b>Card Type:</b></td>
-        <td><%=cardInfo.supertype%></td>
-      </tr>
-      <% if(cardInfo.hp) {%>
-      <tr>
-        <td><b>HP:</b></td>
-        <td><%=cardInfo.hp%></td>
-      </tr>
-      <% } %>
-      <tr>
-        <td><b>Rarity:</b></td>
-        <td><%=cardInfo.rarity%></td>
-      </tr>
+<!-- Check if there is a previous or next card in the set. -->
+<!-- Necessary for previous / next cards to display under current card -->
+<% var prevCardExists = false;%>
+<% var nextCardExists = false;%>
+<% if(parseInt(cardInfo.number) - 1 >= 1) prevCardExists = true; %>
+<% if(parseInt(cardInfo.number) + 1 <= cardInfo.set.total) nextCardExists = true; %>
+<% console.log("Prev card exists?: ", prevCardExists, " Next card exists?: ", nextCardExists); %>
 
-      <% if(cardInfo.flavorText) { %>
-      <tr>
-        <td><b>Flavor Text:</b></td>
-        <td><%=cardInfo.flavorText%></td>
-      </tr>
-      <% } else { %>
-      <tr>
-        <td><b>Rules:</b></td>
-        <td><%=cardInfo.rules.join(' ')%></td>
-      </tr>
-      <% } %>
+<div class="container">
+  <div class="cardInfo">
+    <table>
+      <tbody>
+        <tr>
+          <th colspan="3"><%=cardInfo.name%></th>
+        </tr>
+        <tr>
+          <td rowspan="90"><a href=<%= cardInfo.images.large%>><img src=<%= cardInfo.images.small%> alt=<%=cardInfo.name%>></a></td>
+        </tr>
+        <tr>
+          <td><b>Set:</b></td>
+          <td><%=cardInfo.set.name%></td>
+        </tr>
+        <tr>
+          <td><b>Number:</b></td>
+          <td><%=cardInfo.number%></td>
+        </tr>
+        <tr>
+          <td><b>Card Type:</b></td>
+          <td><%=cardInfo.supertype%></td>
+        </tr>
+        <% if(cardInfo.hp) {%>
+        <tr>
+          <td><b>HP:</b></td>
+          <td><%=cardInfo.hp%></td>
+        </tr>
+        <% } %>
+        <tr>
+          <td><b>Rarity:</b></td>
+          <td><%=cardInfo.rarity%></td>
+        </tr>
 
-      <tr>
-        <td><b>Artist:</b></td>
-        <td><%=cardInfo.artist%></td>
-      </tr>
-    </tbody>
-  </table>
+        <% if(cardInfo.flavorText) { %>
+        <tr>
+          <td><b>Flavor Text:</b></td>
+          <td><%=cardInfo.flavorText%></td>
+        </tr>
+        <% } else { %>
+        <tr>
+          <td><b>Rules:</b></td>
+          <td><%=cardInfo.rules.join(' ')%></td>
+        </tr>
+        <% } %>
+
+        <tr>
+          <td><b>Artist:</b></td>
+          <td><%=cardInfo.artist%></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table>
+      <tbody>
+        <tr>
+          <th style="text-align: center;">Previous</th>
+          <th style="text-align: center;">Next</th>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <%- include('partials/footer') %> 
