@@ -29,17 +29,19 @@ app.get('/sets', (req, res) =>
 
         // Create hashmap for Series:set pairs
         const setMap = {}; 
+        const idMap = {};
         sets.forEach(item => {
-        const { series, name } = item; 
+        const { series, name, id } = item; 
         if(setMap.hasOwnProperty(series)) { 
             setMap[series].push(name); 
+            idMap[series].push(id);
         } else { 
             setMap[series] = [name]; 
+            idMap[series] = [id];
         } 
         }); 
 
-    res.render('sets', {setsInfo: sets, setMap: setMap}); 
-    console.log(sets)
+    res.render('sets', {setsInfo: sets, setMap: setMap, idMap: idMap}); 
   })
 })
 

@@ -1,6 +1,6 @@
 <%- include('partials/header') %> 
 
-<!-- <%console.log(setMap);%> -->
+
 
 <div class="container">
     <div class="setInfo">
@@ -13,6 +13,7 @@
             <tbody>
                 <% let setsCount = 0; %>
                 <% for (let key in setMap) { %>
+                    <% setsCount = 0;%>
                 <tr>   
                     <th colspan="4"><%= key %></th>   
                 </tr>
@@ -23,7 +24,9 @@
                     <% if (count === 0) { %>
                         <tr>
                     <% } %>
-                    <td><a href="https://images.pokemontcg.io/<%= setsInfo[setsCount].id %>/symbol.png"><img src="https://images.pokemontcg.io/<%= setsInfo[setsCount].id %>/symbol.png" width="30" height="30">  <%= value %></a></td>
+                    <% const setId = idMap[key][setsCount]; %>
+                    <%console.log(count, setsCount);%>
+                    <td><a href="https://images.pokemontcg.io/<%= setId %>/symbol.png"><img src="https://images.pokemontcg.io/<%= setId %>/symbol.png" width="30" height="30">  <%= value %></a></td>
                     <% count++; %>
                     <% setsCount++;%>
                     <% if (count === 4) { %>
