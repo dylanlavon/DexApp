@@ -22,16 +22,17 @@ app.get('/about', (req, res) =>
     res.send("This is the About page!")   
 })
 
-app.get('/sets', (req, res) =>
+app.get('/set', (req, res) =>
 {
     pokemon.set.all()
-        .then((sets) => {
-
+        .then((set) => {
+            console.log(set[0].name)
         // Create hashmap for Series:set pairs
         const setMap = {}; 
         const idMap = {};
-        sets.forEach(item => {
+        set.forEach(item => {
         const { series, name, id } = item; 
+        
         if(setMap.hasOwnProperty(series)) { 
             setMap[series].push(name); 
             idMap[series].push(id);
@@ -41,20 +42,36 @@ app.get('/sets', (req, res) =>
         } 
         }); 
 
-    res.render('sets', {setsInfo: sets, setMap: setMap, idMap: idMap}); 
+    res.render('set', {setInfo: set, setMap: setMap, idMap: idMap, page: "set"}); 
   })
 })
 
 app.get('/set/:setId', (req, res) =>
 {
-    res.send(`This is where we will render the set page for a set, if it exists! The passed in set is: ${req.params.setId}`)   
+    const setId = req.params.setId;
+    let setInfo;
+    //let setList;
+
+    Promise.all(
+        [
+            pokemon.set.find(setId),
+            //pokemon.card.where({ q: `set.id:${setId}` })
+        ]
+    )
+    .then(results => 
+        {
+            setInfo = results[0];
+            //setList = results[1];
+            res.render('setlist', { setInfo: setInfo, page: "setList"});
+        })
+
 })
 
 app.get('/card/:cardId', (req, res) =>
 {
     pokemon.card.find(req.params.cardId)
         .then(card => {
-    res.render('card', {cardInfo: card}) 
+    res.render('card', {cardInfo: card, page: "card"}) 
     
     // console.log(card)
 })

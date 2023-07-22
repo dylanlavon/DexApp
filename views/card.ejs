@@ -11,8 +11,8 @@
 <% if(nextCardExists) {var nextCardId = cardInfo.id.split('-')[0] + '-' + (parseInt(cardInfo.number) + 1).toString();} %>
 
 <!-- Log details -->
-<% console.log("Prev card exists?: ", prevCardExists, " Next card exists?: ", nextCardExists); %>
-<% console.log("Prev card id: ", prevCardId, " Next card id: ", nextCardId); %>
+<!-- <% console.log("Prev card exists?: ", prevCardExists, " Next card exists?: ", nextCardExists); %> -->
+<!-- <% console.log("Prev card id: ", prevCardId, " Next card id: ", nextCardId); %> -->
 
 <div class="container">
   <div class="cardInfo">
@@ -26,7 +26,7 @@
         </tr>
         <tr>
           <td><b>Set:</b></td>
-          <td><%=cardInfo.set.name%></td>
+          <td><a href="/set/<%=cardInfo.set.id%>"><%=cardInfo.set.name%></a></td>
         </tr>
         <tr>
           <td><b>Number:</b></td>
@@ -42,17 +42,19 @@
           <td><%=cardInfo.hp%></td>
         </tr>
         <% } %>
+        <% if(cardInfo.rarity) {%>
         <tr>
           <td><b>Rarity:</b></td>
           <td><%=cardInfo.rarity%></td>
         </tr>
+        <% } %>
 
         <% if(cardInfo.flavorText) { %>
         <tr>
           <td><b>Flavor Text:</b></td>
           <td><%=cardInfo.flavorText%></td>
         </tr>
-        <% } else { %>
+        <% } else if(cardInfo.rules){ %>
         <tr>
           <td><b>Rules:</b></td>
           <td><%=cardInfo.rules.join(' ')%></td>

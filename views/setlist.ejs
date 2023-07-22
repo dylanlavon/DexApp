@@ -1,0 +1,53 @@
+<%- include('partials/header') %> 
+
+
+
+<div class="container">
+    <div class="setInfo">
+        <table>
+            <tbody>
+                <tr>
+                    <th style="font-size: 1.5em; line-height: 1.5em;" colspan="4">
+                        <img src="<%= setInfo.images.symbol %>" alt="<%= setInfo.name %>" width="30" height="30">
+                        <%= setInfo.name %>
+                    </th>
+                </tr>
+                <tr>
+                    <td rowspan="90" style="width: 30%;">
+                        <img src="<%= setInfo.images.logo %>" alt="<%= setInfo.name %>" width="700" height="250">
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">
+                        <span>
+                            <b>Series: </b> <%= setInfo.series %>
+                            <br>
+                            <b>Total Cards: </b> <%= setInfo.total %>
+                            <br>
+                            <% if(setInfo.ptcgoCode){%>
+                            <b>PTCGO Set Code: </b> <%= setInfo.ptcgoCode %>
+                            <br>
+                            <% } %>
+                            <b>Release Date: </b> <%= setInfo.releaseDate %>
+                            <br>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <% for(i = 0; i < setInfo.total; i++){%>
+            <a href="/card/<%= setInfo.id %>-<%= i+1 %>"> <img src="https://images.pokemontcg.io/<%= setInfo.id %>/<%= i+1 %>.png" alt="" style="padding: 5px" width="248" height="350"></a>
+        <% } %>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<%- include('partials/footer') %> 

@@ -1,7 +1,5 @@
 <%- include('partials/header') %> 
 
-
-
 <div class="container">
     <div class="setInfo">
         <div>
@@ -11,24 +9,25 @@
         
         <table>
             <tbody>
-                <% let setsCount = 0; %>
+                <% let setCount = 0; %>
                 <% for (let key in setMap) { %>
-                    <% setsCount = 0;%>
+                    <% setCount = 0;%>
                 <tr>   
                     <th colspan="4"><%= key %></th>   
                 </tr>
 
-                <!-- Ensure only three sets appear in a row -->
+                
+
+                <!-- Ensure only four sets appear in a row -->
                 <% let count = 0; %>
                 <% setMap[key].forEach(function(value) { %>
                     <% if (count === 0) { %>
                         <tr>
                     <% } %>
-                    <% const setId = idMap[key][setsCount]; %>
-                    <%console.log(count, setsCount);%>
-                    <td><a href="https://images.pokemontcg.io/<%= setId %>/symbol.png"><img src="https://images.pokemontcg.io/<%= setId %>/symbol.png" width="30" height="30">  <%= value %></a></td>
+                    <% const setId = idMap[key][setCount]; %>
+                    <td><a href="/set/<%= setId %>"><img src="https://images.pokemontcg.io/<%= setId %>/symbol.png" width="30" height="30">  <%= value %></a></td>
                     <% count++; %>
-                    <% setsCount++;%>
+                    <% setCount++;%>
                     <% if (count === 4) { %>
                         </tr>
                         <% count = 0; %>
