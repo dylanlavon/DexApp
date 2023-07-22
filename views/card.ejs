@@ -3,12 +3,20 @@
 <!-- Check if there is a previous or next card in the set. -->
 <!-- Necessary for previous / next cards to display under current card -->
 <% var prevCardExists, nextCardExists = false;%>
-<% if(parseInt(cardInfo.number) - 1 >= 1) prevCardExists = true; %>
-<% if(parseInt(cardInfo.number) + 1 <= cardInfo.set.total) nextCardExists = true; %>
+<% setName = cardInfo.set.name %>
 
-<!-- Get card number, int only -->
-<% if(prevCardExists) {var prevCardId = cardInfo.id.split('-')[0] + '-' + (parseInt(cardInfo.number) - 1).toString();} %>
-<% if(nextCardExists) {var nextCardId = cardInfo.id.split('-')[0] + '-' + (parseInt(cardInfo.number) + 1).toString();} %>
+<% if(setName.includes("Trainer Gallery")) {%>
+  <% currentTGCardNum = parseInt(cardInfo.number.slice(2)); %>
+  <% if(currentTGCardNum - 1 >= 1) prevCardExists = true; %>
+  <% if(currentTGCardNum + 1 <= cardInfo.set.total) nextCardExists = true; %>
+  <% if(prevCardExists) {var prevCardId = cardInfo.id.split('-')[0] + '-TG' + (parseInt(cardInfo.number.slice(2)) - 1).toString().padStart(2, '0');} %>
+  <% if(nextCardExists) {var nextCardId = cardInfo.id.split('-')[0] + '-TG' + (parseInt(cardInfo.number.slice(2)) + 1).toString().padStart(2, '0');} %>
+<% } else { %>}
+  <% if(parseInt(cardInfo.number) - 1 >= 1) prevCardExists = true; %>
+  <% if(parseInt(cardInfo.number) + 1 <= cardInfo.set.total) nextCardExists = true; %>
+  <% if(prevCardExists) {var prevCardId = cardInfo.id.split('-')[0] + '-' + (parseInt(cardInfo.number) - 1).toString();} %>
+  <% if(nextCardExists) {var nextCardId = cardInfo.id.split('-')[0] + '-' + (parseInt(cardInfo.number) + 1).toString();} %>
+<% } %>
 
 <!-- Log details -->
 <!-- <% console.log("Prev card exists?: ", prevCardExists, " Next card exists?: ", nextCardExists); %> -->

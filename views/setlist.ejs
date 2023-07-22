@@ -1,5 +1,6 @@
 <%- include('partials/header') %> 
 
+<% setName = setInfo.name %>
 
 
 <div class="container">
@@ -8,13 +9,13 @@
             <tbody>
                 <tr>
                     <th style="font-size: 1.5em; line-height: 1.5em;" colspan="4">
-                        <img src="<%= setInfo.images.symbol %>" alt="<%= setInfo.name %>" width="30" height="30">
-                        <%= setInfo.name %>
+                        <img src="<%= setInfo.images.symbol %>" alt="<%= setName %>" width="30" height="30">
+                        <%= setName %>
                     </th>
                 </tr>
                 <tr>
                     <td rowspan="90" style="width: 30%;">
-                        <img src="<%= setInfo.images.logo %>" alt="<%= setInfo.name %>" width="700" height="250">
+                        <img src="<%= setInfo.images.logo %>" alt="<%= setName %>" width="700" height="250">
                     </td>
                 </tr>
                 <tr>
@@ -35,9 +36,13 @@
                 </tr>
             </tbody>
         </table>
-
+          
         <% for(i = 0; i < setInfo.total; i++){%>
-            <a href="/card/<%= setInfo.id %>-<%= i+1 %>"> <img src="https://images.pokemontcg.io/<%= setInfo.id %>/<%= i+1 %>.png" alt="" style="padding: 5px" width="248" height="350"></a>
+            <% if(setName.includes("Trainer Gallery")) {%>
+                <a href="/card/<%= setInfo.id %>-TG<%= String(i+1).padStart(2, '0') %>"> <img src="https://images.pokemontcg.io/<%= setInfo.id %>/TG<%= String(i+1).padStart(2, '0') %>.png" alt="" style="padding: 5px" width="248" height="350"></a>     
+            <% } else { %>
+                <a href="/card/<%= setInfo.id %>-<%= i+1 %>"> <img src="https://images.pokemontcg.io/<%= setInfo.id %>/<%= i+1 %>.png" alt="" style="padding: 5px" width="248" height="350"></a>
+            <% } %>
         <% } %>
 
     </div>
