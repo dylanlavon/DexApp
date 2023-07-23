@@ -35,7 +35,7 @@
 
         <!-- Current Card Image -->
         <tr>
-          <td rowspan="90"><a href=<%= cardInfo.images.large%>><img src=<%= cardInfo.images.small%> alt=<%=cardInfo.name%>></a></td>
+          <td rowspan="90"><a href=<%= cardInfo.images.large%>><img width="250" src=<%= cardInfo.images.small%> alt=<%=cardInfo.name%>></a></td>
         </tr>
 
         <!-- Current Card Info -->
@@ -98,7 +98,7 @@
           <% if(prevCardExists) { %>
           <td>
             <div style="text-align: center;">
-              <a href="/card/<%=prevCardId%>"><img src="https://images.pokemontcg.io/<%= prevCardId.split('-')[0] %>/<%= prevCardId.split('-')[1] %>.png"></a>
+              <a href="/card/<%=prevCardId%>"><img width="250" src="https://images.pokemontcg.io/<%= prevCardId.split('-')[0] %>/<%= prevCardId.split('-')[1] %>.png"></a>
               <p><%= prevCardId.split('-')[1] %>/<%= cardInfo.set.printedTotal %></p>
             </div>
           </td>
@@ -106,7 +106,7 @@
           <% if(nextCardExists) { %>
           <td>
             <div style="text-align: center;">
-              <a href="/card/<%=nextCardId%>"><img src="https://images.pokemontcg.io/<%= nextCardId.split('-')[0] %>/<%= nextCardId.split('-')[1] %>.png"></a>
+              <a href="/card/<%=nextCardId%>"><img width="250" src="https://images.pokemontcg.io/<%= nextCardId.split('-')[0] %>/<%= nextCardId.split('-')[1] %>.png"></a>
               <p><%= nextCardId.split('-')[1] %>/<%= cardInfo.set.printedTotal %></p>
             </div>
           </td>
