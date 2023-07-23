@@ -1,5 +1,7 @@
+<!-- Include Header -->
 <%- include('partials/header') %> 
 
+<!-- Create setName variable for conciseness -->
 <% setName = setInfo.name %>
 
 
@@ -7,17 +9,20 @@
     <div class="setInfo">
         <table>
             <tbody>
+                <!-- Header Symbol and Title -->
                 <tr>
                     <th style="font-size: 1.5em; line-height: 1.5em;" colspan="4">
                         <img src="<%= setInfo.images.symbol %>" alt="<%= setName %>" width="30" height="30">
                         <%= setName %>
                     </th>
                 </tr>
+                <!-- Header Logo -->
                 <tr>
                     <td rowspan="90" style="width: 30%;">
                         <img src="<%= setInfo.images.logo %>" alt="<%= setName %>" width="700" height="250">
                     </td>
                 </tr>
+                <!-- Header Info -->
                 <tr>
                     <td valign="top">
                         <span>
@@ -37,6 +42,7 @@
             </tbody>
         </table>
           
+        <!-- Create a thumbnail for each card in the set. Thumbnails link to individual cards' pages. Up to 5 cards per row. (not an actual table) -->
         <% for(i = 0; i < setInfo.total; i++){%>
             <% if(setName.includes("Trainer Gallery")) {%>
                 <a href="/card/<%= setInfo.id %>-TG<%= String(i+1).padStart(2, '0') %>"> <img src="https://images.pokemontcg.io/<%= setInfo.id %>/TG<%= String(i+1).padStart(2, '0') %>.png" alt="" style="padding: 5px" width="248" height="350"></a>     
@@ -48,11 +54,5 @@
     </div>
 </div>
 
-
-
-
-
-
-
-
+<!-- Include Footer -->
 <%- include('partials/footer') %> 

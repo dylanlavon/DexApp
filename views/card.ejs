@@ -1,3 +1,4 @@
+<!-- Include the Header -->
 <%- include('partials/header') %> 
 
 <!-- Check if there is a previous or next card in the set. -->
@@ -26,12 +27,17 @@
   <div class="cardInfo">
     <table>
       <tbody>
+        <!-- Current Card Name -->
         <tr>
           <th colspan="3"><%=cardInfo.name%></th>
         </tr>
+
+        <!-- Current Card Image -->
         <tr>
           <td rowspan="90"><a href=<%= cardInfo.images.large%>><img src=<%= cardInfo.images.small%> alt=<%=cardInfo.name%>></a></td>
         </tr>
+
+        <!-- Current Card Info -->
         <tr>
           <td><b>Set:</b></td>
           <td><a href="/set/<%=cardInfo.set.id%>"><%=cardInfo.set.name%></a></td>
@@ -68,7 +74,6 @@
           <td><%=cardInfo.rules.join(' ')%></td>
         </tr>
         <% } %>
-
         <tr>
           <td><b>Artist:</b></td>
           <td><%=cardInfo.artist%></td>
@@ -78,6 +83,7 @@
 
     <table>
       <tbody>
+        <!-- Previous / Next Text (If they exist) -->
         <tr>
           <% if(prevCardExists) { %>
             <th style="text-align: center;">Previous</th>
@@ -86,6 +92,7 @@
             <th style="text-align: center;">Next</th>
           <% } %>
         </tr>
+        <!-- Previous / Next Images (If they exist) -->
         <tr>
           <% if(prevCardExists) { %>
           <td>
@@ -109,4 +116,5 @@
   </div>
 </div>
 
+<!-- Include the footer -->
 <%- include('partials/footer') %> 

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Dynamically decide upon tab title -->
     <% if(page == "setList") {%>
       <% title = setInfo.name + " - DexApp"%>
     <% } else if(page == "set") {%>
@@ -18,7 +19,10 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/index.css">
 </head>
+
+
 <body>
+  <!-- Create Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="/">DexApp</a>

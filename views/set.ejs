@@ -1,46 +1,58 @@
+<!-- Include the Header -->
 <%- include('partials/header') %> 
 
 <div class="container">
     <div class="setInfo">
+
+        <!-- HEADER -->
         <div>
             <h1 style="margin-bottom: 30px;">Sets</h1>
             <h5 style="margin-bottom: 20px;">Here are all of the English sets from Base up to Paldea Evolved <i>(as of July 2023)</i>.</h5>
         </div>
         
+
         <table>
             <tbody>
                 <% let setCount = 0; %>
                 <% for (let key in setMap) { %>
+
                     <% setCount = 0;%>
-                <tr>   
-                    <th colspan="4"><%= key %></th>   
-                </tr>
 
-                
-
-                <!-- Ensure only four sets appear in a row -->
-                <% let count = 0; %>
-                <% setMap[key].forEach(function(value) { %>
-                    <% if (count === 0) { %>
-                        <tr>
-                    <% } %>
-                    <% const setId = idMap[key][setCount]; %>
-                    <td><a href="/set/<%= setId %>"><img src="https://images.pokemontcg.io/<%= setId %>/symbol.png" width="30" height="30">  <%= value %></a></td>
-                    <% count++; %>
-                    <% setCount++;%>
-                    <% if (count === 4) { %>
-                        </tr>
-                        <% count = 0; %>
-                    <% } %>
-                <% }); %>
-                <% if (count !== 0) { %>
+                    <!-- Series name (i.e. Base, Gym, Neo...) -->
+                    <tr>   
+                        <th colspan="4"><%= key %></th>   
                     </tr>
-                <% } %>
 
-                <!-- Add a small gap between sets -->
-                <tr class="set-gap">
-                    <td colspan="4"></td>
-                </tr>
+                    <!-- Individual sets. Up to 4 sets per row. -->
+                    <% let count = 0; %>
+                    <% setMap[key].forEach(function(value) { %>
+
+                        <% const setId = idMap[key][setCount]; %>
+
+                        <% if (count === 0) { %>
+                            <tr>
+                        <% } %>
+                                         
+                        <td><a href="/set/<%= setId.id %>"><img src="https://images.pokemontcg.io/<%= setId.id %>/symbol.png" width="30" height="30">  <%= value.name %></a></td>
+
+                        <% count++; %>
+                        <% setCount++;%>
+
+                        <% if (count === 4) { %>
+                            </tr>
+                            <% count = 0; %>
+                        <% } %>
+
+                    <% }); %>
+
+                    <% if (count !== 0) { %>
+                        </tr>
+                    <% } %>
+
+                    <!-- Add a small gap between sets -->
+                    <tr class="set-gap">
+                        <td colspan="4"></td>
+                    </tr>
 
                 <% } %>
             </tbody>
