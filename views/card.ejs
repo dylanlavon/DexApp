@@ -1,6 +1,7 @@
 <!-- Include the Header -->
 <%- include('partials/header') %> 
 
+
 <!-- Check if there is a previous or next card in the set. -->
 <!-- Necessary for previous / next cards to display under current card -->
 <% var prevCardExists, nextCardExists = false;%>
@@ -12,7 +13,7 @@
   <% if(currentTGCardNum + 1 <= cardInfo.set.total) nextCardExists = true; %>
   <% if(prevCardExists) {var prevCardId = cardInfo.id.split('-')[0] + '-TG' + (parseInt(cardInfo.number.slice(2)) - 1).toString().padStart(2, '0');} %>
   <% if(nextCardExists) {var nextCardId = cardInfo.id.split('-')[0] + '-TG' + (parseInt(cardInfo.number.slice(2)) + 1).toString().padStart(2, '0');} %>
-<% } else { %>}
+<% } else { %>
   <% if(parseInt(cardInfo.number) - 1 >= 1) prevCardExists = true; %>
   <% if(parseInt(cardInfo.number) + 1 <= cardInfo.set.total) nextCardExists = true; %>
   <% if(prevCardExists) {var prevCardId = cardInfo.id.split('-')[0] + '-' + (parseInt(cardInfo.number) - 1).toString();} %>
