@@ -7,18 +7,98 @@
 <% var prevCardExists, nextCardExists = false;%>
 <% setName = cardInfo.set.name %>
 
+<% classicCollectionImageArray = ["2_A", "4_A", "8_A", "9_A", "15_A", "15_B", "15_C", "15_D", "17_A", "20_A", "24_A", "54_A", "60_A", "66_A", "73_A", "76_A", "86_A", "88_A", "93_A", "97_A", "107_A", "109_A", "113_A", "114_A", "145_A"]%>
+<% classicCollectionDataArray = ["2_A", "4_A", "8_A", "9_A", "15_A1", "15_A2", "15_A3", "15_A4", "17_A", "20_A", "24_A", "54_A", "60_A", "66_A", "73_A", "76_A", "86_A", "88_A", "93_A", "97_A", "107_A", "109_A", "113_A", "114_A", "145_A"]%>
+
+<!-- ANY TRAINER GALLERY -->
 <% if(setName.includes("Trainer Gallery")) {%>
-  <% currentTGCardNum = parseInt(cardInfo.number.slice(2)); %>
-  <% if(currentTGCardNum - 1 >= 1) prevCardExists = true; %>
-  <% if(currentTGCardNum + 1 <= cardInfo.set.total) nextCardExists = true; %>
-  <% if(prevCardExists) {var prevCardId = cardInfo.id.split('-')[0] + '-TG' + (parseInt(cardInfo.number.slice(2)) - 1).toString().padStart(2, '0');} %>
-  <% if(nextCardExists) {var nextCardId = cardInfo.id.split('-')[0] + '-TG' + (parseInt(cardInfo.number.slice(2)) + 1).toString().padStart(2, '0');} %>
-<% } else { %>
+  <% currentCardNum = parseInt(cardInfo.number.slice(2)); %>
+  <% if(currentCardNum - 1 >= 1) prevCardExists = true; %>
+  <% if(currentCardNum + 1 <= cardInfo.set.total) nextCardExists = true; %>
+  <% if(prevCardExists) {var prevCardId = cardInfo.id.split('-')[0] + '-TG' + (currentCardNum - 1).toString().padStart(2, '0');} %>
+  <% if(nextCardExists) {var nextCardId = cardInfo.id.split('-')[0] + '-TG' + (currentCardNum + 1).toString().padStart(2, '0');} %>
+<!-- GALARIAN GALLERY -->
+<% } else if(setName.includes("Galarian Gallery")) {%>
+  <% currentCardNum = parseInt(cardInfo.number.slice(2)); %>
+  <% if(currentCardNum - 1 >= 1) prevCardExists = true; %>
+  <% if(currentCardNum + 1 <= cardInfo.set.total) nextCardExists = true; %>
+  <% if(prevCardExists) {var prevCardId = cardInfo.id.split('-')[0] + '-GG' + (currentCardNum - 1).toString().padStart(2, '0');} %>
+  <% if(nextCardExists) {var nextCardId = cardInfo.id.split('-')[0] + '-GG' + (currentCardNum + 1).toString().padStart(2, '0');} %>
+<!-- SWORD AND SHIELD BLACK STAR PROMOS -->
+<% } else if(setName.includes("SWSH Black Star")) {%>
+  <% currentCardNum = parseInt(cardInfo.number.slice(-3)); %>
+  <% if(currentCardNum - 1 >= 1) prevCardExists = true; %>
+  <% if(currentCardNum + 1 <= cardInfo.set.printedTotal) nextCardExists = true; %>
+  <% if(prevCardExists) {var prevCardId = cardInfo.id.split('-')[0] + '-SWSH' + (currentCardNum - 1).toString().padStart(3, '0');} %>
+  <% if(nextCardExists) {var nextCardId = cardInfo.id.split('-')[0] + '-SWSH' + (currentCardNum + 1).toString().padStart(3, '0');} %>
+<!-- SUN AND MOON BLACK STAR PROMOS -->
+<% } else if(setName.includes("SM Black Star")) {%>
+  <% currentCardNum = parseInt(cardInfo.number.slice(2)); %>
+  <% if(currentCardNum - 1 >= 1) prevCardExists = true; %>
+  <% if(currentCardNum + 1 <= cardInfo.set.total) nextCardExists = true; %>
+  <% if(prevCardExists) {var prevCardId = cardInfo.id.split('-')[0] + '-SM' + (currentCardNum - 1).toString().padStart(2, '0');} %>
+  <% if(nextCardExists) {var nextCardId = cardInfo.id.split('-')[0] + '-SM' + (currentCardNum + 1).toString().padStart(2, '0');} %>
+<!-- HIDDEN FATES SHINY VAULT -->
+<% } else if(setName.includes("Shiny Vault") && cardInfo.set.series === "Sun & Moon") {%>
+  <% currentCardNum = parseInt(cardInfo.number.slice(2)); %>
+  <% if(currentCardNum - 1 >= 1) prevCardExists = true; %>
+  <% if(currentCardNum + 1 <= cardInfo.set.total) nextCardExists = true; %>
+  <% if(prevCardExists) {var prevCardId = cardInfo.id.split('-')[0] + '-SV' + (currentCardNum - 1).toString();} %>
+  <% if(nextCardExists) {var nextCardId = cardInfo.id.split('-')[0] + '-SV' + (currentCardNum + 1).toString();} %>
+<!-- SHINING FATES SHINY VAULT -->
+<% } else if(setName.includes("Shiny Vault") && cardInfo.set.series === "Sword & Shield") {%>
+  <% currentCardNum = parseInt(cardInfo.number.slice(2)); %>
+  <% if(currentCardNum - 1 >= 1) prevCardExists = true; %>
+  <% if(currentCardNum + 1 <= cardInfo.set.total) nextCardExists = true; %>
+  <% if(prevCardExists) {var prevCardId = cardInfo.id.split('-')[0] + '-SV' + (currentCardNum - 1).toString().padStart(3, '0');} %>
+  <% if(nextCardExists) {var nextCardId = cardInfo.id.split('-')[0] + '-SV' + (currentCardNum + 1).toString().padStart(3, '0');} %>
+<!-- XY BLACK STAR PROMOS -->
+<% } else if(setName.includes("XY Black Star")) {%>
+  <% currentCardNum = parseInt(cardInfo.number.slice(2)); %>
+  <% if(currentCardNum - 1 >= 1) prevCardExists = true; %>
+  <% if(currentCardNum + 1 <= cardInfo.set.total) nextCardExists = true; %>
+  <% if(prevCardExists) {var prevCardId = cardInfo.id.split('-')[0] + '-XY' + (currentCardNum - 1).toString().padStart(2, '0');} %>
+  <% if(nextCardExists) {var nextCardId = cardInfo.id.split('-')[0] + '-XY' + (currentCardNum + 1).toString().padStart(2, '0');} %>
+<!-- BW BLACK STAR PROMOS -->
+<% } else if(setName.includes("BW Black Star")) {%>
+  <% currentCardNum = parseInt(cardInfo.number.slice(2)); %>
+  <% if(currentCardNum - 1 >= 1) prevCardExists = true; %>
+  <% if(currentCardNum + 1 <= cardInfo.set.total) nextCardExists = true; %>
+  <% if(prevCardExists) {var prevCardId = cardInfo.id.split('-')[0] + '-BW' + (currentCardNum - 1).toString().padStart(2, '0');} %>
+  <% if(nextCardExists) {var nextCardId = cardInfo.id.split('-')[0] + '-BW' + (currentCardNum + 1).toString().padStart(2, '0');} %>
+<!-- HGSS BLACK STAR PROMOS -->
+<% } else if(setName.includes("HGSS Black Star")) {%>
+  <% currentCardNum = parseInt(cardInfo.number.slice(-2)); %>
+  <% console.log(currentCardNum) %>
+  <% if(currentCardNum - 1 >= 1) prevCardExists = true; %>
+  <% if(currentCardNum + 1 <= cardInfo.set.total) nextCardExists = true; %>
+  <% if(prevCardExists) {var prevCardId = cardInfo.id.split('-')[0] + '-HGSS' + (currentCardNum - 1).toString().padStart(2, '0');} %>
+  <% if(nextCardExists) {var nextCardId = cardInfo.id.split('-')[0] + '-HGSS' + (currentCardNum + 1).toString().padStart(2, '0');} %>
+<!-- DP BLACK STAR PROMOS -->
+<% } else if(setName.includes("DP Black Star")) {%>
+  <% currentCardNum = parseInt(cardInfo.number.slice(-2)); %>
+  <% if(currentCardNum - 1 >= 1) prevCardExists = true; %>
+  <% if(currentCardNum + 1 <= cardInfo.set.total) nextCardExists = true; %>
+  <% if(prevCardExists) {var prevCardId = cardInfo.id.split('-')[0] + '-DP' + (currentCardNum - 1).toString().padStart(2, '0');} %>
+  <% if(nextCardExists) {var nextCardId = cardInfo.id.split('-')[0] + '-DP' + (currentCardNum + 1).toString().padStart(2, '0');} %>
+<!-- CLASSIC COLLECTION -->
+<% } else if(setName.includes("Classic Collection")) {%>
+  <% currentCardIndex = classicCollectionDataArray.indexOf(cardInfo.id.split('-')[1]); %>
+  <% console.log(currentCardIndex) %>
+  <% if(currentCardIndex - 1 >= 0) prevCardExists = true; %>
+  <% if(currentCardIndex + 1 <= cardInfo.set.total) nextCardExists = true; %>
+  <% if(prevCardExists) {var prevCardId = cardInfo.id.split('-')[0] + '-' + classicCollectionDataArray[currentCardIndex - 1];} %>
+  <% if(prevCardExists) {var prevCardImageId = classicCollectionImageArray[currentCardIndex - 1];} %>
+  <% if(nextCardExists) {var nextCardId = cardInfo.id.split('-')[0] + '-' + classicCollectionDataArray[currentCardIndex + 1];} %>
+  <% if(nextCardExists) {var nextCardImageId = classicCollectionImageArray[currentCardIndex + 1];} %>
+<!-- DEFAULT CASE -->
+  <% } else { %>
   <% if(parseInt(cardInfo.number) - 1 >= 1) prevCardExists = true; %>
   <% if(parseInt(cardInfo.number) + 1 <= cardInfo.set.total) nextCardExists = true; %>
   <% if(prevCardExists) {var prevCardId = cardInfo.id.split('-')[0] + '-' + (parseInt(cardInfo.number) - 1).toString();} %>
   <% if(nextCardExists) {var nextCardId = cardInfo.id.split('-')[0] + '-' + (parseInt(cardInfo.number) + 1).toString();} %>
 <% } %>
+
 
 <!-- Log details -->
 <!-- <% console.log("Prev card exists?: ", prevCardExists, " Next card exists?: ", nextCardExists); %> -->
@@ -98,16 +178,26 @@
           <% if(prevCardExists) { %>
           <td>
             <div style="text-align: center;">
-              <a href="/card/<%=prevCardId%>"><img width="250" src="https://images.pokemontcg.io/<%= prevCardId.split('-')[0] %>/<%= prevCardId.split('-')[1] %>.png"></a>
-              <p><%= prevCardId.split('-')[1] %>/<%= cardInfo.set.printedTotal %></p>
+              <% if(setName.includes("Classic Collection")) {%>
+                <a href="/card/<%=prevCardId%>"><img width="250" src="https://images.pokemontcg.io/<%= prevCardId.split('-')[0] %>/<%= prevCardImageId %>.png"></a>
+                <p><%= prevCardId.split('-')[1].split('_')[0] %>/<%= cardInfo.set.printedTotal %></p>
+              <% } else { %>
+                <a href="/card/<%=prevCardId%>"><img width="250" src="https://images.pokemontcg.io/<%= prevCardId.split('-')[0] %>/<%= prevCardId.split('-')[1] %>.png"></a>
+                <p><%= prevCardId.split('-')[1] %>/<%= cardInfo.set.printedTotal %></p>
+              <% } %>
             </div>
           </td>
           <% } %>
           <% if(nextCardExists) { %>
           <td>
             <div style="text-align: center;">
-              <a href="/card/<%=nextCardId%>"><img width="250" src="https://images.pokemontcg.io/<%= nextCardId.split('-')[0] %>/<%= nextCardId.split('-')[1] %>.png"></a>
-              <p><%= nextCardId.split('-')[1] %>/<%= cardInfo.set.printedTotal %></p>
+              <% if(setName.includes("Classic Collection")) {%>
+                <a href="/card/<%=nextCardId%>"><img width="250" src="https://images.pokemontcg.io/<%= nextCardId.split('-')[0] %>/<%= nextCardImageId %>.png"></a>
+                <p><%= nextCardId.split('-')[1].split('_')[0] %>/<%= cardInfo.set.printedTotal %></p>
+              <% } else { %>
+                <a href="/card/<%=nextCardId%>"><img width="250" src="https://images.pokemontcg.io/<%= nextCardId.split('-')[0] %>/<%= nextCardId.split('-')[1] %>.png"></a>
+                <p><%= nextCardId.split('-')[1] %>/<%= cardInfo.set.printedTotal %></p>
+              <% } %> 
             </div>
           </td>
           <% } %>

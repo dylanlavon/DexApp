@@ -4,7 +4,8 @@
 <!-- Create setName variable for conciseness -->
 <% setName = setInfo.name %>
 
-<% classicCollectionArray = ["2_A", "4_A", "8_A", "9_A", "15_A", "15_B", "15_C", "15_D", "17_A", "20_A", "24_A", "54_A", "60_A", "66_A", "73_A", "76_A", "86_A", "88_A", "93_A", "97_A", "107_A", "109_A", "113_A", "114_A", "145_A"]%>
+<% classicCollectionImageArray = ["2_A", "4_A", "8_A", "9_A", "15_A", "15_B", "15_C", "15_D", "17_A", "20_A", "24_A", "54_A", "60_A", "66_A", "73_A", "76_A", "86_A", "88_A", "93_A", "97_A", "107_A", "109_A", "113_A", "114_A", "145_A"]%>
+<% classicCollectionDataArray = ["2_A", "4_A", "8_A", "9_A", "15_A1", "15_A2", "15_A3", "15_A4", "17_A", "20_A", "24_A", "54_A", "60_A", "66_A", "73_A", "76_A", "86_A", "88_A", "93_A", "97_A", "107_A", "109_A", "113_A", "114_A", "145_A"]%>
 
 <div class="container">
     <div class="setInfo">
@@ -88,16 +89,23 @@
             } else if (setName.includes("Classic Collection")) {
                 <!-- CLASSIC COLLECTION -->
                 cardPrefix = "";
-                cardNumber = classicCollectionArray[i];
+                cardImageNumber = classicCollectionImageArray[i];
+                cardDataNumber = classicCollectionDataArray[i];
             } else {
                 <!-- DEFAULT CASE -->
-                cardPrefix = String(setInfo.id);
+                cardPrefix = "";
                 cardNumber = String(i + 1);
             } %>
             
-            <a href="/card/<%= setInfo.id %>-<%= cardPrefix %><%= cardNumber %>">
-                <img src="https://images.pokemontcg.io/<%= setInfo.id %>/<%= cardPrefix %><%= cardNumber %>.png" alt="" style="padding: 5px" width="248" height="350">
-            </a>
+            <% if(setInfo.id == "cel25c") { %>
+                <a href="/card/<%= setInfo.id %>-<%= cardPrefix %><%= cardDataNumber %>">
+                    <img src="https://images.pokemontcg.io/<%= setInfo.id %>/<%= cardPrefix %><%= cardImageNumber %>.png" alt="" style="padding: 5px" width="248" height="350">
+                </a>
+            <% } else { %>
+                <a href="/card/<%= setInfo.id %>-<%= cardPrefix %><%= cardNumber %>">
+                    <img src="https://images.pokemontcg.io/<%= setInfo.id %>/<%= cardPrefix %><%= cardNumber %>.png" alt="" style="padding: 5px" width="248" height="350">
+                </a>
+            <% } %>
         <% } %>
 
     </div>
