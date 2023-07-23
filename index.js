@@ -15,13 +15,13 @@ app.set('view engine', 'ejs')
  
 // HOME PAGE
 app.get('/', (req, res) => {
-    res.send("Welcome home!")
+    res.render('home', {page: 'home'})
 })
 
 // ABOUT PAGE
 app.get('/about', (req, res) =>
 {
-    res.send("This is the About page!")   
+    res.render('about', {page: 'about'}) 
 })
 
 // SET PAGE

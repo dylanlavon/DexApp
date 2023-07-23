@@ -92,7 +92,8 @@
   <% if(nextCardExists) {var nextCardId = cardInfo.id.split('-')[0] + '-' + classicCollectionDataArray[currentCardIndex + 1];} %>
   <% if(nextCardExists) {var nextCardImageId = classicCollectionImageArray[currentCardIndex + 1];} %>
 <!-- DEFAULT CASE -->
-  <% } else { %>
+<% } else { %>
+  <% console.log(cardInfo.set) %>
   <% if(parseInt(cardInfo.number) - 1 >= 1) prevCardExists = true; %>
   <% if(parseInt(cardInfo.number) + 1 <= cardInfo.set.total) nextCardExists = true; %>
   <% if(prevCardExists) {var prevCardId = cardInfo.id.split('-')[0] + '-' + (parseInt(cardInfo.number) - 1).toString();} %>
