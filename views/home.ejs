@@ -1,7 +1,19 @@
 <!-- Include the Header -->
 <%- include('partials/header') %> 
 
-Home Page!
-
+<div class="d-flex mx-auto">
+    <!-- Wrapping div to center the container -->
+    <div class="container">
+      <div class="d-flex justify-content-center">
+        <div class="text-center">
+          <h1 style="font-family: Raleway;">DexApp</h1>
+          <h4 style="color: rgba(255, 255, 255, .3); font-family: Raleway;">The helpful Pokemon card lookup tool.</h4>
+          <form class="search-form" onsubmit="return false;">
+            <input class="searchField" type="search" placeholder="Search for a card..." onkeypress="submitOnEnter(event)">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 <!-- Include the footer -->
 <%- include('partials/footer') %> 

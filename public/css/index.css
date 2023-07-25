@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'Raleway';
+    src: url('../fonts/Raleway.ttf')
+    /* Add more font formats if needed for better browser support */
+  }
+  
 body{
     background: #333333;
     color: white;
@@ -79,3 +85,11 @@ tr.set-gap td {
     border: none; /* Remove border */
     outline: none; /* Remove outline */
   }
+
+.searchField{
+    background-color: #0b0a0a;
+    color: #444;
+    font-family: Raleway;
+    margin-top: 10px;
+    width: 100%;
+}
