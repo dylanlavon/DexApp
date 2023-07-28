@@ -88,8 +88,42 @@ tr.set-gap td {
 
 .searchField{
     background-color: #0b0a0a;
-    color: #444;
+    color: #999;
     font-family: Raleway;
     margin-top: 10px;
+    padding-left: 40px;
+    width: 100%;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.searchField:focus {
+    outline: none; /* Remove the default focus outline */
+    border-color: #3098ec; /* Change the border color to the desired highlight color */
+    box-shadow: 0 0 10px #3098ec;
+  }
+
+.search-form{
     width: 100%;
 }
+
+.wrapper{
+    width: 50%;
+}
+
+.search-wrapper{
+    position: relative;
+}
+
+.search-icon {
+    position: absolute; /* Position the icon absolutely within the wrapper */
+    top: 50%; /* Vertically center the icon */
+    left: 10px; /* Adjust the position of the icon from the right */
+    transform: translateY(-30%); /* Center the icon vertically using translation */
+    width: 20px; /* Set the width of the icon */
+    height: 20px; /* Set the height of the icon */
+    background-image: url('../images/searchIcon.png'); /* Replace 'path/to/magnifying-glass-icon.png' with the actual path to your icon image */
+    background-size: cover; /* Adjust the icon size to fit the element */
+    cursor: pointer; /* Show the pointer cursor when hovering over the icon */
+  }
