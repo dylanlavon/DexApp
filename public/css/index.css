@@ -24,6 +24,10 @@ footer{
   margin-top: auto;
 }
 
+.blueLinks{
+    color: #007bff;
+}
+
 a{
     color: white;
     text-decoration: none;
