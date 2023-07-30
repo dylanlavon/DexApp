@@ -4,9 +4,6 @@
 <!-- Create setName variable for conciseness -->
 <% setName = setInfo.name %>
 
-<% classicCollectionImageArray = ["2_A", "4_A", "8_A", "9_A", "15_A", "15_B", "15_C", "15_D", "17_A", "20_A", "24_A", "54_A", "60_A", "66_A", "73_A", "76_A", "86_A", "88_A", "93_A", "97_A", "107_A", "109_A", "113_A", "114_A", "145_A"]%>
-<% classicCollectionDataArray = ["2_A", "4_A", "8_A", "9_A", "15_A1", "15_A2", "15_A3", "15_A4", "17_A", "20_A", "24_A", "54_A", "60_A", "66_A", "73_A", "76_A", "86_A", "88_A", "93_A", "97_A", "107_A", "109_A", "113_A", "114_A", "145_A"]%>
-
 <div class="container">
     <div class="setInfo">
         <table>
@@ -43,71 +40,13 @@
                 </tr>
             </tbody>
         </table>
-          
-        <% for (i = 0; i < setInfo.total; i++) { %>
-            <% let cardPrefix, cardNumber; %>
-            <% if (setName.includes("Trainer Gallery")) {
-                <!-- ANY TRAINER GALLERY -->
-                cardPrefix = "TG";
-                cardNumber = String(i + 1).padStart(2, '0');
-            } else if (setName.includes("Galarian Gallery")) {
-                <!-- GALARIAN GALLERY -->
-                cardPrefix = "GG";
-                cardNumber = String(i + 1).padStart(2, '0');
-            } else if (setName.includes("SWSH Black Star")) {
-                <!-- SWORD AND SHIELD BLACK STAR PROMOS -->
-                cardPrefix = "SWSH";
-                cardNumber = String(i + 1).padStart(3, '0');
-            } else if (setName.includes("SM Black Star")) {
-                <!-- SUN AND MOON BLACK STAR PROMOS -->
-                cardPrefix = "SM";
-                cardNumber = String(i + 1).padStart(2, '0');
-            } else if (setName.includes("Shiny Vault") && setInfo.series === "Sword & Shield") {
-                <!-- SHINING FATES SHINY VAULT -->
-                cardPrefix = "SV";
-                cardNumber = String(i + 1).padStart(3, '0');
-            } else if (setName.includes("Shiny Vault") && setInfo.series === "Sun & Moon") {
-                <!-- HIDDEN FATES SHINY VAULT -->
-                cardPrefix = "SV";
-                cardNumber = String(i + 1);
-            } else if (setName.includes("XY Black Star")) {
-                <!-- XY BLACK STAR PROMOS -->
-                cardPrefix = "XY";
-                cardNumber = String(i + 1).padStart(2, '0');
-            } else if (setName.includes("BW Black Star")) {
-                <!-- BW BLACK STAR PROMOS -->
-                cardPrefix = "BW";
-                cardNumber = String(i + 1).padStart(2, '0');
-            } else if (setName.includes("HGSS Black Star")) {
-                <!-- HGSS BLACK STAR PROMOS -->
-                cardPrefix = "HGSS";
-                cardNumber = String(i + 1).padStart(2, '0');
-            } else if (setName.includes("DP Black Star")) {
-                <!-- DP BLACK STAR PROMOS -->
-                cardPrefix = "DP";
-                cardNumber = String(i + 1).padStart(2, '0');
-            } else if (setName.includes("Classic Collection")) {
-                <!-- CLASSIC COLLECTION -->
-                cardPrefix = "";
-                cardImageNumber = classicCollectionImageArray[i];
-                cardDataNumber = classicCollectionDataArray[i];
-            } else {
-                <!-- DEFAULT CASE -->
-                cardPrefix = "";
-                cardNumber = String(i + 1);
-            } %>
-            
-            <% if(setInfo.id == "cel25c") { %>
-                <a href="/card/<%= setInfo.id %>-<%= cardPrefix %><%= cardDataNumber %>">
-                    <img src="https://images.pokemontcg.io/<%= setInfo.id %>/<%= cardPrefix %><%= cardImageNumber %>.png" alt="" style="padding: 5px" width="248" height="350">
-                </a>
-            <% } else { %>
-                <a href="/card/<%= setInfo.id %>-<%= cardPrefix %><%= cardNumber %>">
-                    <img src="https://images.pokemontcg.io/<%= setInfo.id %>/<%= cardPrefix %><%= cardNumber %>.png" alt="" style="padding: 5px" width="248" height="350">
-                </a>
-            <% } %>
+        <% console.log(searchResults) %>
+        <% for(i = 0; i < searchResults.length; i++) { %>
+            <% console.log(i) %>
+            <a href="/card/<%= searchResults[i].id %>">
+                <img src="<%= searchResults[i].images.small %>" alt="" style="padding: 5px" width="248" height="350">
+            </a>
         <% } %>
-
     </div>
 </div>
 

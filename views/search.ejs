@@ -1,5 +1,6 @@
 <!-- Include the Header -->
 <%- include('partials/header') %> 
+<% console.log(searchResults) %>
 
 <div class="wrapper d-flex mx-auto">
     <div class=" container d-flex flex-column">
@@ -26,11 +27,9 @@
 <% let hasResults = false; %>
 
 <% if (searchResults.length > 0) hasResults = true; %>
-<% console.log("Has Results?: ", + hasResults) %>
 
 <% if (hasResults) { %>
 <% for(let i = 0; i < searchResults.length; i++){%>
-    <%    console.log(searchResults[i].id, searchResults[i].images.small)%>
 <%}%>
 
 <% } %>

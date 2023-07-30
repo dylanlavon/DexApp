@@ -138,23 +138,19 @@ app.get('/set', (req, res) =>
 app.get('/set/:setId', (req, res) =>
 {
     const setId = req.params.setId;
-    let setInfo;
-    //let setList;
 
     Promise.all(
         [
-            pokemon.set.find(setId),
-            //pokemon.card.where({ q: `set.id:${setId}` })
+            pokemon.card.all({ q: `set.id:${setId}`, orderBy: "number"}),
+            pokemon.set.find(setId)
         ]
     )
-    .then(results => 
-        {
-            setInfo = results[0];
-            //setList = results[1];
-            res.render('setlist', { setInfo: setInfo, page: "setList"});
-        })
-
+    .then(results => {
+        searchResults = results[0];
+        setInfo = results[1];
+        res.render('setlist', {page: 'Search', searchResults: searchResults, setInfo: setInfo}) });
 })
+
 
 // CARD PAGE
 app.get('/card/:cardId', (req, res) => {
