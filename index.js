@@ -1,6 +1,7 @@
 // Set up requirements
 const pokemon = require('pokemontcgsdk');
 const express = require('express');
+const bodyParser = require('body-parser'); // Require the body-parser middleware
 const app = express();
 const path = require('path');
 
@@ -12,6 +13,9 @@ const PORT = 3000
 
 pokemon.configure({apiKey: API_KEY})
 app.set('view engine', 'ejs')
+
+// Parse URL-encoded form data
+app.use(bodyParser.urlencoded({ extended: false }));
  
 // HOME PAGE
 app.get('/', (req, res) => {
@@ -22,6 +26,22 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) =>
 {
     res.render('about', {page: 'about'}) 
+})
+
+// SEARCH PAGE
+app.get('/search', (req, res) => {
+    let query = 'name:"' + req.query.q + '"'; 
+
+    pokemon.card.all({ q: query })
+     .then(result => {
+        res.render('search', {page: 'Search', query: query, searchResults: result}) 
+    })
+  });
+
+// ADVANCED SEARCH PAGE
+app.get('/advancedSearch', (req, res) =>
+{
+    res.render('advancedSearch', {page: 'Advanced Search'}) 
 })
 
 // SET PAGE

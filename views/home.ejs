@@ -10,9 +10,9 @@
           </div>
       </div>
       <div class="d-flex justify-content-center">
-          <form class="search-form" onsubmit="return false;">
+          <form action="/search" method="GET" class="search-form" id="homeForm" onsubmit="return false;">
             <div class="search-wrapper mt-2">
-              <input class="searchField" type="search" placeholder="Search for a card..." onkeypress="submitOnEnter(event)">
+              <input class="searchField" type="search" name="q" placeholder="Search with the name of a card..." onkeypress="submitOnEnter(event, 'homeForm')">
               <span class="search-icon"></span>
             </div>
           </form>

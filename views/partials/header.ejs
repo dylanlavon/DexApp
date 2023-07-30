@@ -15,6 +15,8 @@
       <% title = "Home - DexApp" %>
     <% } else if(page == "about") {%>
       <% title = "About - DexApp" %>
+    <% } else if(page == "Advanced Search") {%>
+      <% title = "Advanced Search - DexApp" %>
     <% } else {%>
       <% title = "Welcome to DexApp!" %>
     <% } %>
@@ -36,18 +38,20 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Cards</a>
+                <a class="nav-link active" aria-current="page" href="/set">Sets</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/set">Sets</a>
+                <a class="nav-link active" aria-current="page" href="/advancedSearch">Advanced Search</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/about">About</a>
               </li>
             </ul>
             <div class="search-wrapper">
-              <input class="headerSearchField" type="search" placeholder="Search for a card..." onkeypress="submitOnEnter(event)">
-              <span class="header-search-icon"></span>
+              <form action="/search" method="GET" class="search-form" id="navForm" onsubmit="return false;">
+                <input class="headerSearchField" type="search" name="q" placeholder="Search by card name..." onkeypress="submitOnEnter(event, 'navForm')">
+                <span class="header-search-icon"></span>
+            </form>
             </div>
           </div>
         </div>

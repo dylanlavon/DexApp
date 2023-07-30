@@ -1,8 +1,9 @@
 console.log("hi from functions")
 
-function submitOnEnter(event) {
+function submitOnEnter(event, formId) {
     if (event.key === 'Enter') {
-      event.preventDefault(); // Prevent form submission
-      document.querySelector('.search-form').submit(); // Submit the form programmatically
+      
+      const form = document.getElementById(formId)
+      form.submit(); // Submit the form programmatically
     }
   }

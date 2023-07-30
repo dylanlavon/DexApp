@@ -115,6 +115,12 @@ tr.set-gap td {
     border-radius: 20px;
 }
 
+.headerSearchField:focus {
+    outline: none; /* Remove the default focus outline */
+    border-color: #3098ec; /* Change the border color to the desired highlight color */
+    box-shadow: 0 0 10px #3098ec;
+  }
+
 .searchField:focus {
     outline: none; /* Remove the default focus outline */
     border-color: #3098ec; /* Change the border color to the desired highlight color */
