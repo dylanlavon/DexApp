@@ -1,13 +1,29 @@
 <!-- Include the Header -->
 <%- include('partials/header') %> 
 
-<h1>Your Query is:</h1>
-<h2><%=query%></h2>
+<div class="wrapper d-flex mx-auto">
+    <div class=" container d-flex flex-column">
+        <div class="d-flex justify-content-center">
+            <form action="/search" method="GET" class="search-form" id="homeForm" onsubmit="return false;">
+                <div class="search-wrapper mt-2">
+                    <input class="searchField" type="search" name="q" placeholder="Search with the name of a card..." onkeypress="submitOnEnter(event, 'homeForm')">
+                    <span class="search-icon"></span>
+                </div>
+            </form>
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+            <p>
+              ...or try using an <a class="blueLinks" href="/advancedSearch">advanced search</a>.
+            </p>
+        </div>
 
-<% console.log("Query: " + query) %>
+        <div class="d-flex justify-content-center mt-3">
+            <h2><%= searchResults.length %> results found! <% if(searchResults.length == 0) {%> :( <% } %> </h2>
+        </div>
+    </div>
+</div>
 
 <% let hasResults = false; %>
-<% console.log(searchResults) %>
 
 <% if (searchResults.length > 0) hasResults = true; %>
 <% console.log("Has Results?: ", + hasResults) %>
@@ -18,5 +34,17 @@
 <%}%>
 
 <% } %>
+
+<div class="container">
+    <div class="setInfo">
+<% for(i = 0; i < searchResults.length; i++) { %>
+        <a href="/card/<%= searchResults[i].id %>">
+            <img src="<%= searchResults[i].images.small %>" alt="" style="padding: 5px" width="248" height="350">
+        </a>
+<% } %>
+    </div>
+</div>
+
+
 <!-- Include the footer -->
 <%- include('partials/footer') %> 

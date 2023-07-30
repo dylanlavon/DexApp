@@ -1,5 +1,53 @@
 <!-- Include the Header -->
 <%- include('partials/header') %> 
+<% console.log(sets) %>
+
+<form action="/search" method="GET">
+    <div>
+        <label for="name">Card Name</label>
+        <input name="name" id="name" type="text" placeholder='Any part of the card name, e.g. "Dunsparce"'>
+    </div>
+
+    <div>
+        <label for="set">Set</label>
+        <select id="set" name="set">
+            <option value="">All</option>
+            <% for(i = 0; i < sets.length; i++) { %> <option value="<%= sets[i].id %>"><%= sets[i].name %></option> <% } %>
+        </select>
+    </div>
+
+    <div>
+        <label for="artist">Artist Name</label>
+        <input name="artist" id="artist" type="text" placeholder='Any part of the artist name, e.g. "Shinji Kanda"'>
+    </div>
+
+    <div>
+        <label for="supertype">Supertype</label>
+        <select id="supertype" name="supertype">
+            <option value="">All</option>
+            <% for(i = 0; i < supertypes.length; i++) { %> <option value="<%= supertypes[i] %>"><%= supertypes[i] %></option> <% } %>
+        </select>
+    </div>
+
+    <div>
+        <label for="subtype">Subtype</label>
+        <select id="subtype" name="subtype">
+            <option value="">All</option>
+            <% for(i = 0; i < subtypes.length; i++) { %> <option value="<%= subtypes[i] %>"><%= subtypes[i] %></option> <% } %>
+        </select>
+    </div>
+
+    <div>
+        <label for="rarity">Rarity</label>
+        <select id="rarity" name="rarity">
+            <option value="">All</option>
+            <% for(i = 0; i < rarities.length; i++) { %> <option value="<%= rarities[i] %>"><%= rarities[i] %></option> <% } %>
+        </select>
+    </div>
+
+
+    <input type="submit">
+</form>
 
 <!-- Include the footer -->
 <%- include('partials/footer') %> 

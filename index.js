@@ -16,6 +16,8 @@ app.set('view engine', 'ejs')
 
 // Parse URL-encoded form data
 app.use(bodyParser.urlencoded({ extended: false }));
+
+
  
 // HOME PAGE
 app.get('/', (req, res) => {
@@ -30,18 +32,51 @@ app.get('/about', (req, res) =>
 
 // SEARCH PAGE
 app.get('/search', (req, res) => {
-    let query = 'name:"' + req.query.q + '"'; 
 
-    pokemon.card.all({ q: query })
+    // Basic name query
+    if(req.query.q)
+    {
+    const baseUserQuery = req.query.q;
+    let query = 'name:"' + baseUserQuery + '"'; 
+
+    pokemon.card.all({ q: query, orderBy: "name" })
      .then(result => {
         res.render('search', {page: 'Search', query: query, searchResults: result}) 
     })
+    }
+    // Advanced query
+    else
+    {
+        const queryString = `${req.query.name ? ` name:${req.query.name}` : ''} ${req.query.artist ? ` artist:"${req.query.artist}"` : ''} ${req.query.supertype ? ` supertype:${req.query.supertype}` : ''} ${req.query.set ? ` set.id:${req.query.set}` : ''} ${req.query.subtype ? ` subtypes:"${req.query.subtype}"` : ''} ${req.query.rarity ? ` rarity:"${req.query.rarity}"` : ''}`;
+        
+        console.log(queryString)
+        pokemon.card.all({ q: queryString, orderBy: "name"})
+            .then(result => {
+        res.render('search', {page: 'Search', searchResults: result}) 
+        })
+    }
+    
+    
   });
 
 // ADVANCED SEARCH PAGE
 app.get('/advancedSearch', (req, res) =>
 {
-    res.render('advancedSearch', {page: 'Advanced Search'}) 
+    Promise.all(
+        [
+            pokemon.type.all(),
+            pokemon.subtype.all(),
+            pokemon.supertype.all(),
+            pokemon.rarity.all(),
+            pokemon.set.all({orderBy: 'releaseDate'})
+        ]
+    )
+    .then(results => 
+        {
+            setInfo = results[0];
+            //setList = results[1];
+            res.render('advancedSearch', { page: 'Advanced Search', types: results[0], subtypes: results[1], supertypes: results[2], rarities: results[3], sets: results[4]});
+        })
 })
 
 // SET PAGE
