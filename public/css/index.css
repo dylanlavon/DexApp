@@ -171,3 +171,12 @@ tr.set-gap td {
   background-position: center;
   z-index: -1;
   }
+
+  .max-image {
+    max-width: 1000px; /* Set the maximum width you want */
+    max-height: 1000px; /* Set the maximum width you want */
+    width: 100%; /* This ensures the image scales within the maximum width */
+    height: 100%;
+  }
+
+  
