@@ -40,11 +40,18 @@
                 </tr>
             </tbody>
         </table>
-        <% for(i = 0; i < searchResults.length; i++) { %>
-            <a href="/card/<%= searchResults[i].id %>">
-                <img src="<%= searchResults[i].images.small %>" alt="" style="padding: 5px" width="248" height="350">
-            </a>
-        <% } %>
+        <% if((setInfo.name).includes("Classic Collection")) {%>
+            <% for(i = 0; i < setNumMap[setInfo.id].length; i++) { %>
+                <a href="/card/cel25c-<%= classicCollectionDataArray[i] %>">
+                    <img src="https://images.pokemontcg.io/<%= setNumMap[setInfo.id][i].split('-')[0] %>/<%= classicCollectionImageArray[i] %>.png" alt="" style="padding: 5px" width="248" height="350">
+                </a>
+            <% } %>
+        <% } else { %>
+            <% for(i = 0; i < setNumMap[setInfo.id].length; i++) { %>
+                <a href="/card/<%= setNumMap[setInfo.id][i] %>">
+                    <img src="https://images.pokemontcg.io/<%= setNumMap[setInfo.id][i].split('-')[0] %>/<%= setNumMap[setInfo.id][i].split('-')[1] %>.png" alt="" style="padding: 5px" width="248" height="350">
+                </a>
+        <% }} %>    
     </div>
 </div>
 

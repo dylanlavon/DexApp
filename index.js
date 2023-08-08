@@ -23,8 +23,6 @@ pokemon.set.all()
     .then(sets => {
     const setsArray = sets.map(set => set.id);
     
-    
-
     let numSetsComplete = 0;
 
     const apiCalls = setsArray.map((setId, index) => {
@@ -38,11 +36,7 @@ pokemon.set.all()
                         setNumMap[setId] = cardIds;
                         resolve(); // Resolve the promise to move to the next iteration
                     })
-                    .catch(error => {
-                        console.error("API call error:", error);
-                        reject(error); // Reject the promise in case of an error
-                    });
-            }, index * 250); // Adjust the delay duration as needed (in milliseconds)
+            }, index * 300); // Adjust the delay duration as needed (in milliseconds)
         });
     });
 
@@ -52,9 +46,10 @@ pokemon.set.all()
         console.log("Initialization complete!")
     });
     })
-    
 
- 
+const classicCollectionImageArray = ["2_A", "4_A", "8_A", "9_A", "15_A", "15_B", "15_C", "15_D", "17_A", "20_A", "24_A", "54_A", "60_A", "66_A", "73_A", "76_A", "86_A", "88_A", "93_A", "97_A", "107_A", "109_A", "113_A", "114_A", "145_A"]
+const classicCollectionDataArray = ["2_A", "4_A", "8_A", "9_A", "15_A1", "15_A2", "15_A3", "15_A4", "17_A", "20_A", "24_A", "54_A", "60_A", "66_A", "73_A", "76_A", "86_A", "88_A", "93_A", "97_A", "107_A", "109_A", "113_A", "114_A", "145_A"]
+
 // HOME PAGE
 app.get('/', (req, res) => {
     res.render('home', {page: 'home'})
@@ -175,16 +170,9 @@ app.get('/set/:setId', (req, res) =>
 {
     const setId = req.params.setId;
 
-    Promise.all(
-        [
-            pokemon.card.all({ q: `set.id:${setId}`, orderBy: "number"}),
-            pokemon.set.find(setId)
-        ]
-    )
-    .then(results => {
-        searchResults = results[0];
-        setInfo = results[1];
-        res.render('setlist', {page: 'Search', searchResults: searchResults, setInfo: setInfo}) });
+    pokemon.set.find(setId)
+        .then(setInfo => {
+        res.render('setlist', {page: 'Search', setInfo: setInfo, setNumMap: setNumMap, classicCollectionImageArray: classicCollectionImageArray, classicCollectionDataArray: classicCollectionDataArray}) });
 })
 
 
@@ -193,7 +181,7 @@ app.get('/card/:cardId', (req, res) => {
     pokemon.card.find(req.params.cardId)
         .then(card => {
             console.log(card)
-            res.render('card', { cardInfo: card, page: "card", setNumMap: setNumMap});
+            res.render('card', { cardInfo: card, page: "card", setNumMap: setNumMap, classicCollectionImageArray: classicCollectionImageArray, classicCollectionDataArray: classicCollectionDataArray});
         });
 });
 

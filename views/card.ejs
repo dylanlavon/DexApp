@@ -7,7 +7,7 @@
 <% const currentSetId = cardInfo.set.id %>
 <% const currentCardId = cardInfo.id %>
 <% const cardList = setNumMap[currentSetId] %>
-<% const currentCardIndex = cardList.indexOf(currentCardId) %>
+<% let currentCardIndex = cardList.indexOf(currentCardId) %>
 <% const numCardsInSet = cardList.length %>
 <% const setName = cardInfo.set.name %>
 
@@ -16,11 +16,19 @@
 <!-- Determine if next/prev cards exist, and if so, get their card ids. -->
 <% var prevCardExists, nextCardExists = false;%>
 <% var prevCardId, nextCardId%>
-<% if(currentCardIndex > 0) { prevCardExists = true; prevCardId = setNumMap[currentSetId][currentCardIndex - 1];} %>
-<% if(currentCardIndex + 1 < numCardsInSet) { nextCardExists = true; nextCardId = setNumMap[currentSetId][currentCardIndex + 1];} %>
-<% console.log(nextCardExists) %>
+<% var prevCardDataId, nextCardDataId, prevCardImageId, nextCardImageId%>
 
-<% classicCollectionImageArray = ["2_A", "4_A", "8_A", "9_A", "15_A", "15_B", "15_C", "15_D", "17_A", "20_A", "24_A", "54_A", "60_A", "66_A", "73_A", "76_A", "86_A", "88_A", "93_A", "97_A", "107_A", "109_A", "113_A", "114_A", "145_A"]%>
+<% if(setName.includes("Classic Collection")) {%>
+  <% currentCardIndex = classicCollectionDataArray.indexOf(currentCardId.split('-')[1]) %>
+  <% if(currentCardIndex > 0) { prevCardExists = true; prevCardImageId = classicCollectionImageArray[currentCardIndex - 1]; prevCardDataId = classicCollectionDataArray[currentCardIndex - 1];}%>
+  <% if(currentCardIndex + 1 < numCardsInSet) { nextCardExists = true; nextCardImageId = classicCollectionImageArray[currentCardIndex + 1]; nextCardDataId = classicCollectionDataArray[currentCardIndex + 1];}%>
+<% } else { %>
+  <% if(currentCardIndex > 0) { prevCardExists = true; prevCardId = setNumMap[currentSetId][currentCardIndex - 1];} %>
+  <% if(currentCardIndex + 1 < numCardsInSet) { nextCardExists = true; nextCardId = setNumMap[currentSetId][currentCardIndex + 1];} %>
+<% } %>
+
+<% console.log(currentCardIndex, numCardsInSet) %>
+<% console.log(nextCardExists) %>
 
 <div class="container">
   <div class="cardInfo">
@@ -96,10 +104,9 @@
           <% if(prevCardExists) { %>
           <td>
             <div style="text-align: center;">
-              <% if(setName.includes("Classic Collection")) {%>
-                <% let prevCardImageId = classicCollectionImageArray[currentCardIndex - 1] %>
-                <a href="/card/<%=prevCardId%>"><img width="250" src="https://images.pokemontcg.io/<%= prevCardId.split('-')[0] %>/<%= prevCardImageId %>.png"></a>
-                <p><%= prevCardId.split('-')[1].split('_')[0] %>/<%= cardInfo.set.printedTotal %></p>
+              <% if(setName.includes("Classic Collection")) {%>              
+                <a href="/card/cel25c-<%=prevCardDataId%>"><img width="250" src="https://images.pokemontcg.io/cel25c/<%= prevCardImageId %>.png"></a>
+                <p><%= prevCardDataId %>/<%= cardInfo.set.printedTotal %></p>
               <% } else { %>
                 <a href="/card/<%=prevCardId%>"><img width="250" src="https://images.pokemontcg.io/<%= prevCardId.split('-')[0] %>/<%= prevCardId.split('-')[1] %>.png"></a>
                 <p><%= prevCardId.split('-')[1] %>/<%= cardInfo.set.printedTotal %></p>
@@ -111,9 +118,8 @@
           <td>
             <div style="text-align: center;">
               <% if(setName.includes("Classic Collection")) {%>
-                <% let nextCardImageId = classicCollectionImageArray[currentCardIndex + 1] %>
-                <a href="/card/<%=nextCardId%>"><img width="250" src="https://images.pokemontcg.io/<%= nextCardId.split('-')[0] %>/<%= nextCardImageId %>.png"></a>
-                <p><%= nextCardId.split('-')[1].split('_')[0] %>/<%= cardInfo.set.printedTotal %></p>
+                <a href="/card/cel25c-<%=nextCardDataId%>"><img width="250" src="https://images.pokemontcg.io/cel25c/<%= nextCardImageId %>.png"></a>
+                <p><%= nextCardDataId %>/<%= cardInfo.set.printedTotal %></p>
               <% } else { %>
                 <a href="/card/<%=nextCardId%>"><img width="250" src="https://images.pokemontcg.io/<%= nextCardId.split('-')[0] %>/<%= nextCardId.split('-')[1] %>.png"></a>
                 <p><%= nextCardId.split('-')[1] %>/<%= cardInfo.set.printedTotal %></p>
