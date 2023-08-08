@@ -162,3 +162,13 @@ tr.set-gap td {
     background-size: cover; /* Adjust the icon size to fit the element */
     cursor: pointer; /* Show the pointer cursor when hovering over the icon */
   }
+
+  .bottom-right-image {
+    position: absolute;
+  right: 0;
+  bottom: 0;
+  background-image: url('path/to/your/background-image.jpg'); /* Replace with your image path */
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  }
