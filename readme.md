@@ -12,7 +12,6 @@ All data is provided by the [Pokemon TCG Developers API](https://pokemontcg.io/)
 - Make Advanced Search look pretty.
 - Set up About Page.
 - Set up 404 Page so site doesnt crash.
-- Add card spread image to home page.
 - Add price tracking on Card Page.
 - Zoom in/out effect for cards on Search / Setlist pages.
 - Host the dang thing!
