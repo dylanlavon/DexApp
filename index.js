@@ -17,6 +17,42 @@ app.set('view engine', 'ejs')
 // Parse URL-encoded form data
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// Initial data collection
+let setNumMap = {}
+pokemon.set.all()
+    .then(sets => {
+    const setsArray = sets.map(set => set.id);
+    
+    
+
+    let numSetsComplete = 0;
+
+    const apiCalls = setsArray.map((setId, index) => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                pokemon.card.all({ q: `set.id:${setId}`, orderBy: "number"})
+                    .then(setData => {
+                        const cardIds = setData.map(card => card.id);
+                        console.log(++numSetsComplete)
+                        console.log(cardIds)
+                        setNumMap[setId] = cardIds;
+                        resolve(); // Resolve the promise to move to the next iteration
+                    })
+                    .catch(error => {
+                        console.error("API call error:", error);
+                        reject(error); // Reject the promise in case of an error
+                    });
+            }, index * 250); // Adjust the delay duration as needed (in milliseconds)
+        });
+    });
+
+    return Promise.all(apiCalls)
+    .then(() => {
+        console.log(setNumMap)
+        console.log("Initialization complete!")
+    });
+    })
+    
 
  
 // HOME PAGE
@@ -156,7 +192,8 @@ app.get('/set/:setId', (req, res) =>
 app.get('/card/:cardId', (req, res) => {
     pokemon.card.find(req.params.cardId)
         .then(card => {
-            res.render('card', { cardInfo: card, page: "card" });
+            console.log(card)
+            res.render('card', { cardInfo: card, page: "card", setNumMap: setNumMap});
         });
 });
 

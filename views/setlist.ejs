@@ -40,9 +40,7 @@
                 </tr>
             </tbody>
         </table>
-        <% console.log(searchResults) %>
         <% for(i = 0; i < searchResults.length; i++) { %>
-            <% console.log(i) %>
             <a href="/card/<%= searchResults[i].id %>">
                 <img src="<%= searchResults[i].images.small %>" alt="" style="padding: 5px" width="248" height="350">
             </a>
