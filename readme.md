@@ -8,7 +8,6 @@ All data is provided by the [Pokemon TCG Developers API](https://pokemontcg.io/)
 
 - McDonald's Sets for '14, '15, '17, and '18 are all missing images (due to them not being uploaded yet to pkmncards.io).
 - HGSS18 missing image.
-- Make Advanced Search look pretty.
 - Set up About Page.
 - Set up 404 Page so site doesnt crash.
 - Add price tracking on Card Page.
