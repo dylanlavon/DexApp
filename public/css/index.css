@@ -132,7 +132,7 @@ tr.set-gap td {
 }
 
 .wrapper{
-    width: 50%;
+    width: 20%;
 }
 
 .search-wrapper{
@@ -179,4 +179,52 @@ tr.set-gap td {
     height: 100%;
   }
 
-  
+  .advancedField{
+    background-color: #0b0a0a;
+    color: #999;
+    font-family: Raleway;
+    font-size: 15px;
+    padding-left: 25px;
+    width: 100%;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.advancedField:focus {
+    outline: none; /* Remove the default focus outline */
+    border-color: #3098ec; /* Change the border color to the desired highlight color */
+    box-shadow: 0 0 10px #3098ec;
+  }
+
+.advancedWrapper{
+    width: 50%;
+    position: relative;
+}
+
+.advancedLabel{
+    text-align: center; 
+    display: block;
+    margin-bottom: 20px;
+    font-family: Raleway;
+    font-weight: 500;
+}
+
+.advancedButton{
+    position: absolute;
+    right: 0;
+}
+
+.pageHeader{
+    font-family: Raleway;
+    font-weight: 200;
+    letter-spacing: 5px;
+    text-align: center;
+}
+
+hr.style-one {
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
