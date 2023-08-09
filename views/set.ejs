@@ -2,12 +2,14 @@
 <%- include('partials/header') %> 
 
 <div class="container">
-    <div class="setInfo">
+    <div class="allSets">
 
         <!-- HEADER -->
-        <div>
-            <h1 style="margin-bottom: 30px;">Sets</h1>
-            <h5 style="margin-bottom: 20px;">Here are all of the English sets from Base up to Paldea Evolved <i>(as of July 2023)</i>.</h5>
+        <div class="mx-auto mb-5" style="width: 100%;">
+            <hr class="style-one">
+            <h1 class="pageHeader">ALL SETS</h1>
+            <h5 class="pageHeader">Browse cards by set.</h5>
+            <hr class="style-one">
         </div>
         
 
@@ -20,7 +22,7 @@
 
                     <!-- Series name (i.e. Base, Gym, Neo...) -->
                     <tr>   
-                        <th colspan="4"><%= key %></th>   
+                        <th class="seriesName" colspan="4"><%= key %></th>   
                     </tr>
 
                     <!-- Individual sets. Up to 4 sets per row. -->
@@ -33,7 +35,7 @@
                             <tr>
                         <% } %>
                                          
-                        <td><a href="/set/<%= setId.id %>"><img src="https://images.pokemontcg.io/<%= setId.id %>/symbol.png" width="auto" height="30">  <%= value.name %></a></td>
+                        <td class="setName"><a href="/set/<%= setId.id %>"><img src="https://images.pokemontcg.io/<%= setId.id %>/symbol.png" width="auto" height="30"><span><%= value.name %></span></a></td>
 
                         <% count++; %>
                         <% setCount++;%>

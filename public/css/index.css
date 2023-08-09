@@ -84,6 +84,14 @@ table img{
     padding: 20px;
 }
 
+.allSets{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: auto;
+    padding: 20px;
+}
+
 tr.set-gap td {
     height: 10px; /* Adjust the height as needed */
     border: none; /* Remove border */
@@ -227,4 +235,20 @@ hr.style-one {
     height: 1px;
     background: #333;
     background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+
+.setName{
+    font-family: Raleway;
+    position: relative;
+}
+
+
+.setName span {
+    position: absolute;
+    left: 80px;
+    top: 18px;
+}
+
+.seriesName{
+    font-family: Raleway;
 }
