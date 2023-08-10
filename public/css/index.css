@@ -252,3 +252,12 @@ hr.style-one {
 .seriesName{
     font-family: Raleway;
 }
+
+.aboutP{
+    font-family: Raleway;
+    text-align: center;
+}
+
+.aboutImg{
+    width: 45px;
+}
