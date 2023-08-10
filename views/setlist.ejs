@@ -10,7 +10,7 @@
             <tbody>
                 <!-- Header Symbol and Title -->
                 <tr>
-                    <th style="font-size: 1.5em; line-height: 1.5em;" colspan="4">
+                    <th class="seriesName" style="font-size: 1.5em; line-height: 1.5em;" colspan="4">
                         <img src="<%= setInfo.images.symbol %>" alt="<%= setName %>" width="30" height="30">
                         <%= setName %>
                     </th>
@@ -24,7 +24,7 @@
                 <!-- Header Info -->
                 <tr>
                     <td valign="center">
-                        <span>
+                        <span class="seriesName">
                             <b>Series: </b> <%= setInfo.series %>
                             <br>
                             <b>Total Cards: </b> <%= setInfo.total %>
