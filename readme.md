@@ -10,6 +10,7 @@ All data is provided by the [Pokemon TCG Developers API](https://pokemontcg.io/)
 - HGSS18 missing image.
 - Fix logo squash on Setlist page.
 - Add dynamic tab title on setlist page.
+- Look into dynamic height for cells on sets page.
 - Set up 404 Page so site doesnt crash.
 - Add price tracking on Card Page.
 - Zoom in/out effect for cards on Search / Setlist pages.
