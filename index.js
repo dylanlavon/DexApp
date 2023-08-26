@@ -105,7 +105,6 @@ app.get('/advancedSearch', (req, res) =>
     .then(results => 
         {
             setInfo = results[0];
-            //setList = results[1];
             res.render('advancedSearch', { page: 'Advanced Search', types: results[0], subtypes: results[1], supertypes: results[2], rarities: results[3], sets: results[4]});
         })
 })
@@ -172,7 +171,7 @@ app.get('/set/:setId', (req, res) =>
 
     pokemon.set.find(setId)
         .then(setInfo => {
-        res.render('setlist', {page: 'Search', setInfo: setInfo, setNumMap: setNumMap, classicCollectionImageArray: classicCollectionImageArray, classicCollectionDataArray: classicCollectionDataArray}) });
+        res.render('setlist', {page: 'setList', setInfo: setInfo, setNumMap: setNumMap, classicCollectionImageArray: classicCollectionImageArray, classicCollectionDataArray: classicCollectionDataArray}) });
 })
 
 
