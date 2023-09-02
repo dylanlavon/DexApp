@@ -240,6 +240,7 @@ hr.style-one {
 .setName{
     font-family: Raleway;
     position: relative;
+    vertical-align: top;
 }
 
 
