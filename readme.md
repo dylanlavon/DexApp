@@ -10,6 +10,7 @@ All data is provided by the [Pokemon TCG Developers API](https://pokemontcg.io/)
 - HGSS18 missing image.
 - Submit button on advancedSearch page is misplaced.
 - App crashes when timeout due to poor connection
+- Add tab title for Search results page
 - Look into dynamic height for cells on sets page.
 -     Adjust number of cells on row due to window size (i.e., minimum window width should only have 1 item per row)
 - Set up 404 Page so site doesnt crash.
