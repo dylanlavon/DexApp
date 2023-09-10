@@ -1,7 +1,8 @@
 <!-- Include the Header -->
 <%- include('partials/header') %> 
 
-<% console.log(setNumMap) %>
+<% console.log(cardInfo.tcgplayer.url) %>
+<% console.log(cardInfo.tcgplayer.prices) %>
 
 <!-- Get current set id, card id, the list of card ids for this set, and the current card index-->
 <% const currentSetId = cardInfo.set.id %>
@@ -11,7 +12,6 @@
 <% const numCardsInSet = cardList.length %>
 <% const setName = cardInfo.set.name %>
 
-<% console.log(cardList, currentCardIndex) %>
 
 <!-- Determine if next/prev cards exist, and if so, get their card ids. -->
 <% var prevCardExists, nextCardExists = false;%>
@@ -27,8 +27,6 @@
   <% if(currentCardIndex + 1 < numCardsInSet) { nextCardExists = true; nextCardId = setNumMap[currentSetId][currentCardIndex + 1];} %>
 <% } %>
 
-<% console.log(currentCardIndex, numCardsInSet) %>
-<% console.log(nextCardExists) %>
 
 <div class="container">
   <div class="cardInfo seriesName">
@@ -84,6 +82,119 @@
         <tr>
           <td><b>Artist:</b></td>
           <td><%=cardInfo.artist%></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table>
+      <tbody>
+        <tr>
+          <th class="seriesName" style="text-align: left;" colspan="4">
+            Price Tracking by <i><a class="blueLinks" target="_blank" href="<%= cardInfo.tcgplayer.url %>">TCG Player</a></i>
+          </th>
+        </tr>
+        <tr>
+          <td style="width: 25%;">
+            <% if(cardInfo.tcgplayer.prices.normal) { %>
+
+              <b>Low: </b>
+              <% if(cardInfo.tcgplayer.prices.normal.low) {%>
+                <span style="float: right; margin-right: 10px;">$<%= cardInfo.tcgplayer.prices.normal.low.toFixed(2) %></span>
+              <% } else { %>
+                <span style="float: right; margin-right: 10px;">N/A</span>
+              <% } %>
+            </td>
+            <td style="width: 25%;">
+              <b>Mid: </b>
+              <% if(cardInfo.tcgplayer.prices.normal.mid) {%>
+                <span style="float: right; margin-right: 10px;">$<%= cardInfo.tcgplayer.prices.normal.mid.toFixed(2) %></span>
+              <% } else { %>
+                <span style="float: right; margin-right: 10px;">N/A</span>
+              <% } %>
+            </td>
+            <td style="width: 25%;">
+              <b>High: </b>
+              <% if(cardInfo.tcgplayer.prices.normal.high) {%>
+                <span style="float: right; margin-right: 10px;">$<%= cardInfo.tcgplayer.prices.normal.high.toFixed(2) %></span>
+              <% } else { %>
+                <span style="float: right; margin-right: 10px;">N/A</span>
+              <% } %>
+            </td>
+            <td style="width: 25%;">
+              <b>Market: </b>
+              <% if(cardInfo.tcgplayer.prices.normal.market) {%>
+                <span style="float: right; margin-right: 10px;">$<%= cardInfo.tcgplayer.prices.normal.low.toFixed(2) %></span>
+              <% } else { %>
+                <span style="float: right; margin-right: 10px;">N/A</span>
+              <% } %>
+
+            <% } else if (cardInfo.tcgplayer.prices.reverseHolofoil) { %>
+
+              <b>Low: </b>
+              <% if(cardInfo.tcgplayer.prices.reverseHolofoil.low) {%>
+                <span style="float: right; margin-right: 10px;">$<%= cardInfo.tcgplayer.prices.reverseHolofoil.low.toFixed(2) %></span>
+              <% } else { %>
+                <span style="float: right; margin-right: 10px;">N/A</span>
+              <% } %>
+            </td>
+            <td style="width: 25%;">
+              <b>Mid: </b>
+              <% if(cardInfo.tcgplayer.prices.reverseHolofoil.mid) {%>
+                <span style="float: right; margin-right: 10px;">$<%= cardInfo.tcgplayer.prices.reverseHolofoil.mid.toFixed(2) %></span>
+              <% } else { %>
+                <span style="float: right; margin-right: 10px;">N/A</span>
+              <% } %>
+            </td>
+            <td style="width: 25%;">
+              <b>High: </b>
+              <% if(cardInfo.tcgplayer.prices.reverseHolofoil.high) {%>
+                <span style="float: right; margin-right: 10px;">$<%= cardInfo.tcgplayer.prices.reverseHolofoil.high.toFixed(2) %></span>
+              <% } else { %>
+                <span style="float: right; margin-right: 10px;">N/A</span>
+              <% } %>
+            </td>
+            <td style="width: 25%;">
+              <b>Market: </b>
+              <% if(cardInfo.tcgplayer.prices.reverseHolofoil.market) {%>
+                <span style="float: right; margin-right: 10px;">$<%= cardInfo.tcgplayer.prices.reverseHolofoil.low.toFixed(2) %></span>
+              <% } else { %>
+                <span style="float: right; margin-right: 10px;">N/A</span>
+              <% } %>
+
+              <% } else if (cardInfo.tcgplayer.prices.holofoil) { %>
+
+                <b>Low: </b>
+                <% if(cardInfo.tcgplayer.prices.holofoil.low) {%>
+                  <span style="float: right; margin-right: 10px;">$<%= cardInfo.tcgplayer.prices.holofoil.low.toFixed(2) %></span>
+                <% } else { %>
+                  <span style="float: right; margin-right: 10px;">N/A</span>
+                <% } %>
+              </td>
+              <td style="width: 25%;">
+                <b>Mid: </b>
+                <% if(cardInfo.tcgplayer.prices.holofoil.mid) {%>
+                  <span style="float: right; margin-right: 10px;">$<%= cardInfo.tcgplayer.prices.holofoil.mid.toFixed(2) %></span>
+                <% } else { %>
+                  <span style="float: right; margin-right: 10px;">N/A</span>
+                <% } %>
+              </td>
+              <td style="width: 25%;">
+                <b>High: </b>
+                <% if(cardInfo.tcgplayer.prices.holofoil.high) {%>
+                  <span style="float: right; margin-right: 10px;">$<%= cardInfo.tcgplayer.prices.holofoil.high.toFixed(2) %></span>
+                <% } else { %>
+                  <span style="float: right; margin-right: 10px;">N/A</span>
+                <% } %>
+              </td>
+              <td style="width: 25%;">
+                <b>Market: </b>
+                <% if(cardInfo.tcgplayer.prices.holofoil.market) {%>
+                  <span style="float: right; margin-right: 10px;">$<%= cardInfo.tcgplayer.prices.holofoil.low.toFixed(2) %></span>
+                <% } else { %>
+                  <span style="float: right; margin-right: 10px;">N/A</span>
+                <% } %>
+              <% } %>
+          </td>
         </tr>
       </tbody>
     </table>
