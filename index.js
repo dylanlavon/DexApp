@@ -78,7 +78,9 @@ app.get('/search', (req, res) => {
     // Advanced query
     else
     {
-        const queryString = `${req.query.name ? ` name:${req.query.name}` : ''} ${req.query.artist ? ` artist:"${req.query.artist}"` : ''} ${req.query.supertype ? ` supertype:${req.query.supertype}` : ''} ${req.query.set ? ` set.id:${req.query.set}` : ''} ${req.query.subtype ? ` subtypes:"${req.query.subtype}"` : ''} ${req.query.rarity ? ` rarity:"${req.query.rarity}"` : ''}`;
+        const queryString = `${req.query.name ? ` name:${req.query.name}` : ''} ${req.query.artist ? ` artist:"${req.query.artist}"` : ''} 
+                             ${req.query.supertype ? ` supertype:${req.query.supertype}` : ''} ${req.query.set ? ` set.id:${req.query.set}` : ''} 
+                             ${req.query.subtype ? ` subtypes:"${req.query.subtype}"` : ''} ${req.query.rarity ? ` rarity:"${req.query.rarity}"` : ''}`;
         
         console.log(queryString)
         pokemon.card.all({ q: queryString, orderBy: "name"})
@@ -86,8 +88,6 @@ app.get('/search', (req, res) => {
         res.render('search', {page: 'Search', searchResults: result}) 
         })
     }
-    
-    
   });
 
 // ADVANCED SEARCH PAGE
