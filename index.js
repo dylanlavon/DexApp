@@ -36,7 +36,7 @@ pokemon.set.all()
                         setNumMap[setId] = cardIds;
                         resolve(); // Resolve the promise to move to the next iteration
                     })
-            }, index * 1000); // Adjust the delay duration as needed (in milliseconds)
+            }, index * 500); // Adjust the delay duration as needed (in milliseconds)
         });
     });
 
@@ -168,10 +168,19 @@ app.get('/set', (req, res) =>
 app.get('/set/:setId', (req, res) =>
 {
     const setId = req.params.setId;
-
     pokemon.set.find(setId)
         .then(setInfo => {
-        res.render('setlist', {page: 'setList', setInfo: setInfo, setNumMap: setNumMap, classicCollectionImageArray: classicCollectionImageArray, classicCollectionDataArray: classicCollectionDataArray}) });
+        res.render('setlist', {setInfo: setInfo, page: "setList", setNumMap: setNumMap, classicCollectionImageArray: classicCollectionImageArray, classicCollectionDataArray: classicCollectionDataArray}) 
+        })
+        .catch(error => {
+            if(error.response.status === 404)
+            {
+                res.status(404).render('error404', {page: "404"});
+            }
+            else{
+                res.status(500).render('error500', {page: "500"});
+            }
+        })
 })
 
 
@@ -181,9 +190,41 @@ app.get('/card/:cardId', (req, res) => {
         .then(card => {
             console.log(card)
             res.render('card', { cardInfo: card, page: "card", setNumMap: setNumMap, classicCollectionImageArray: classicCollectionImageArray, classicCollectionDataArray: classicCollectionDataArray});
-        });
+        })
+        .catch(error => {
+            if(error.response.status === 404)
+            {
+                res.status(404).render('error404', {page: "404"});
+            }
+            else{
+                res.status(500).render('error500', {page: "500"});
+            }
+        })
 });
 
+
+// 404 PAGE
+app.use((req, res, next) => {
+    // Create a custom error object for the 404 error
+    const error = new Error('Not Found');
+    error.status = 404;
+  
+    // Pass the error to the next middleware
+    next(error);
+  });
+  
+  // Custom error handling middleware
+  app.use((err, req, res, next) => {
+    // Check if the error status is 404
+    if (err.status === 404) {
+      // Handle the 404 error here
+      res.status(404).render('error404', {page: "404"}); // Render your custom 404 page
+    } else {
+      // Handle other errors (e.g., 500 Internal Server Error)
+      console.error(err); // Log the error for debugging
+      res.status(500).render('error500', {page: "500"}); // Render a generic error page
+    }
+  });
 // Listen on PORT 3000
 app.listen(PORT, () => 
 {
