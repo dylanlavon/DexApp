@@ -13,7 +13,7 @@ All data is provided by the [Pokemon TCG Developers API](https://pokemontcg.io/)
 -     Adjust number of cells on row due to window size (i.e., minimum window width should only have 1 item per row)
 - Zoom in/out effect for cards on Card / Search / Setlist pages.
 - Host the dang thing!
-- Complete weekly progress reports
+- Complete weekly progress reports (2 remaining)
 - Complete weekly presentations (2 remaining)
 - Complete final presentation
 - Complete Final paper
