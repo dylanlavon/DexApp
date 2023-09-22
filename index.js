@@ -36,7 +36,7 @@ pokemon.set.all()
                         setNumMap[setId] = cardIds;
                         resolve(); // Resolve the promise to move to the next iteration
                     })
-            }, index * 500); // Adjust the delay duration as needed (in milliseconds)
+            }, index * 800); // Adjust the delay duration as needed (in milliseconds)
         });
     });
 

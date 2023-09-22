@@ -262,3 +262,16 @@ hr.style-one {
 .aboutImg{
     width: 45px;
 }
+
+.zoomableImgDiv{
+    justify-content: center;
+    align-items: center;
+    display:flex;
+}
+.zoomableImg{
+    transition: transform .2s;
+    margin:0 auto;
+}
+.zoomableImg:hover{
+    transform:scale(1.2);
+}

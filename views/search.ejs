@@ -39,7 +39,9 @@
     <div class="setInfo">
 <% for(i = 0; i < searchResults.length; i++) { %>
         <a href="/card/<%= searchResults[i].id %>">
-            <img src="<%= searchResults[i].images.small %>" alt="" style="padding: 5px" width="248" height="350">
+            <div class="zoomableImgDiv">
+                <img class="zoomableImg" src="<%= searchResults[i].images.small %>" alt="" style="padding: 5px" width="248" height="350">
+            </div>
         </a>
 <% } %>
     </div>
