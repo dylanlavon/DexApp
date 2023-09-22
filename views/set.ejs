@@ -35,8 +35,14 @@
                             <tr>
                         <% } %>
                                          
-                        <td class="setName" ><a href="/set/<%= setId.id %>"><img src="https://images.pokemontcg.io/<%= setId.id %>/symbol.png" 
-                            width="auto" height="35"><span><%= value.name %></span></a></td>
+                        <td class="setName" >
+                            <a href="/set/<%= setId.id %>">
+                                <img class="setSymbol" src="https://images.pokemontcg.io/<%= setId.id %>/symbol.png" width="auto" height="35">
+                                <span>
+                                    <%= value.name %>
+                                </span>
+                            </a>
+                        </td>
 
                         <% count++; %>
                         <% setCount++;%>

@@ -243,12 +243,35 @@ hr.style-one {
     vertical-align: top;
 }
 
-
 .setName span {
     position: absolute;
     left: 80px;
     top: 18px;
 }
+
+@media (max-width: 1000px) {
+    .setName{
+        height: 100px;
+    }
+    .setName span{
+        left: 55px;
+    }
+    .setSymbol{
+        height: 20px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .setName{
+        height: 100px;
+    }
+    .setName span{
+        left: 10px;
+    }
+    .setSymbol{
+        opacity: 0;
+    }
+  }
 
 .seriesName{
     font-family: Raleway;
